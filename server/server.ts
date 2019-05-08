@@ -1,12 +1,23 @@
 import 'reflect-metadata';
+import { ApolloServer } from 'apollo-server';
+import * as path from 'path';
+import { buildSchema } from 'type-graphql';
 
-const express = require('express'),
-  app = express();
+import KanbanCardResolver from './schema/resolvers/kanban/kanbanCard.resolver';
 
-app.get('/', (req: any, res: any) => {
-  res.send('hello world!');
-});
+async function bootstrap() {
+  const schema = await buildSchema({
+    resolvers: [KanbanCardResolver],
+    emitSchemaFile: path.resolve(__dirname, 'schema.gql')
+  });
 
-app.listen(3000, () => {
-  console.log('Listening on port 3000!');
-});
+  const server  = new ApolloServer({
+    schema,
+    playground: true
+  });
+
+  const { url } = await server.listen(4000);
+  console.log(`Server is running, available at ${url}`);
+}
+
+bootstrap().catch(console.log);

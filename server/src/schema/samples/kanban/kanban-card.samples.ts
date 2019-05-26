@@ -1,4 +1,4 @@
-import KanbanCard from '../../types/kanban/kanbanCard.type';
+import { KanbanCard } from '../../types/kanban/kanban-card.type';
 
 export default function createSampleKanbanCards(): KanbanCard[] {
   return [

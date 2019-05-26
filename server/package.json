@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node test.js",
     "tsc": "tsc",
-    "dev": "ts-node-dev --respawn --transpileOnly ./server.ts",
+    "dev": "nodemon",
     "prod": "tsc && node ./build/server.js"
   },
   "keywords": [

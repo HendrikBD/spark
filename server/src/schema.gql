@@ -9,12 +9,6 @@ type KanbaBoardResponse {
   hasMore: Boolean!
 }
 
-type KanbaCardResponse {
-  items: [KanbanCard!]!
-  total: Int!
-  hasMore: Boolean!
-}
-
 type Kanban {
   id: Float!
   label: String!
@@ -24,19 +18,25 @@ type Kanban {
 type KanbanBoard {
   id: Float!
   label: String!
-  description: String!
+  description: String
   cards: [KanbanCard!]!
 }
 
 type KanbanCard {
   id: Float!
   label: String!
-  description: String!
+  description: String
 }
 
 input KanbanCardBody {
   label: String!
   description: String!
+}
+
+type KanbanCardResponse {
+  items: [KanbanCard!]!
+  total: Int!
+  hasMore: Boolean!
 }
 
 type KanbansResponse {
@@ -53,5 +53,5 @@ type Mutation {
 type Query {
   kanbans(first: Int = 10): KanbansResponse!
   kanbanBoards(first: Int = 10): KanbaBoardResponse!
-  kanbanCards(first: Int = 10): KanbaCardResponse!
+  kanbanCards(first: Int = 10): KanbanCardResponse!
 }

@@ -7,26 +7,26 @@ import createSampleKanbanCards from '../../samples/kanban/kanban-card.samples';
 import KanbanCardService from '../../../services/kanban/kanban-card.service';
 
 @ObjectType()
-class KanbaCardResponse extends PaginatedResponse(KanbanCard) {}
+class KanbanCardResponse extends PaginatedResponse(KanbanCard) {}
 
 @Resolver(of => KanbanCard)
 export default class KanbanCardResolver {
 
   constructor(
     private readonly kanbanCardService: KanbanCardService
-  ) {
-    console.log('hello from a resolver');
-  }
+  ) {}
 
   private readonly kanbanCards = createSampleKanbanCards();
 
-  @Query({ name: 'kanbanCards' })
-  getKanbanCards(
+  @Query(returns => KanbanCardResponse, { name: 'kanbanCards' })
+  async getKanbanCards(
     @Arg('first', type => Int, { nullable: true, defaultValue: 10 }) first: number
-  ): KanbaCardResponse {
-    const total = this.kanbanCards.length;
+  ): Promise<KanbanCardResponse> {
+    const cards = await this.kanbanCardService.getAll(),
+      total = cards.length;
+
     return {
-      items: this.kanbanCards.slice(0, first),
+      items: cards,
       hasMore: total > first,
       total
     };

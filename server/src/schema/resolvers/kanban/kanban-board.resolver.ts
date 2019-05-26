@@ -15,9 +15,7 @@ export default class KanbanBoardsResolver {
 
   constructor(
     private readonly kanbanBoardService: KanbanBoardService
-  ) {
-    console.log('hello from a resolver');
-  }
+  ) {}
 
   private readonly kanbanBoards = createSampleKanbanBoards();
 

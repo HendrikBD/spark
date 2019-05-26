@@ -11,6 +11,7 @@
 # server
 /server/build
 /server/node_modules
+/server/.env
 
 # IDEs and editors
 /.idea

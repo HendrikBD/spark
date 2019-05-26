@@ -1,14 +1,15 @@
 import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server';
-import * as path from 'path';
 import { buildSchema } from 'type-graphql';
 import { Container } from 'typedi';
+import * as path from 'path';
+import dotenv from 'dotenv';
+
 import ErrorService from './services/error.service';
-
-Container.set('ErrorHandler', new ErrorService());
-
 import KanbanResolvers from './schema/resolvers/kanban';
-// import KanbanCardResolver from './schema/resolvers/kanban/kanban-card.resolver';
+
+dotenv.config();
+Container.set('ErrorHandler', new ErrorService());
 
 async function bootstrap() {
   const schema = await buildSchema({
@@ -20,9 +21,7 @@ async function bootstrap() {
 
   const server  = new ApolloServer({
     schema,
-    context: (stuff) => {
-      console.log(stuff);
-      console.log('other stuff');
+    context: (context) => {
       console.log('context');
     },
     playground: true

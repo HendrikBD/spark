@@ -10,7 +10,7 @@ export class KanbanCard {
   @Field()
   label: string;
 
-  @Field()
+  @Field({ nullable: true })
   description?: string;
 
 }

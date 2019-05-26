@@ -10,7 +10,7 @@ export default class KanbanBoard {
   @Field()
   label: string;
 
-  @Field()
+  @Field({ nullable: true })
   description?: string;
 
   @Field(type => [KanbanCard])

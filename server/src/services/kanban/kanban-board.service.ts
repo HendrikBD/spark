@@ -9,7 +9,6 @@ export default class KanbanBoardService extends PgService {
   constructor(container) {
     super();
 
-    console.log('hello from kanban board service');
     this.counter = 0;
   }
 

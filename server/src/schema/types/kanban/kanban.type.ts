@@ -1,8 +1,8 @@
 import { ObjectType, Field, Int } from 'type-graphql';
-import KanbanBoard from './kanban-board.type';
+import { KanbanBoard } from './kanban-board.type';
 
 @ObjectType()
-export default class Kanban {
+export class Kanban {
 
   @Field()
   id: number;

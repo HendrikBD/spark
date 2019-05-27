@@ -1,32 +1,30 @@
 import { ObjectType, Query, Mutation, Arg, Int, Resolver } from 'type-graphql';
 
 import PaginatedResponse from '../../types/common/paginated-response.type';
-import KanbanBoard from '../../types/kanban/kanban-board.type';
-import createSampleKanbanBoards from '../../samples/kanban/kanban-board.samples';
 
+import { KanbanBoard } from '../../types/kanban/kanban-board.type';
 import KanbanBoardService from '../../../services/kanban/kanban-board.service';
 
 @ObjectType()
-class KanbaBoardResponse extends PaginatedResponse(KanbanBoard) {
-}
+class KanbanBoardResponse extends PaginatedResponse(KanbanBoard) {}
 
-@Resolver()
+@Resolver(of => KanbanBoard)
 export default class KanbanBoardsResolver {
 
   constructor(
     private readonly kanbanBoardService: KanbanBoardService
   ) {}
 
-  private readonly kanbanBoards = createSampleKanbanBoards();
-
-  @Query({ name: 'kanbanBoards' })
-  getKanbanBoards(
+  @Query(returns => KanbanBoardResponse, { name: 'kanbanBoards' })
+  async getKanbanBoards(
     @Arg('first', type => Int, { nullable: true, defaultValue: 10 }) first: number
-  ): KanbaBoardResponse {
-    const total = this.kanbanBoards.length;
-    this.kanbanBoardService.error.get();
+  ): Promise<KanbanBoardResponse> {
+
+    const boards = await this.kanbanBoardService.getAll(),
+      total = boards.length;
+
     return {
-      items: this.kanbanBoards.slice(0, first),
+      items: boards,
       hasMore: total > first,
       total
     };

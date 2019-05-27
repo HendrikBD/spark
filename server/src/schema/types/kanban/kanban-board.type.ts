@@ -2,7 +2,7 @@ import { ObjectType, Field, Int } from 'type-graphql';
 import { KanbanCard } from './kanban-card.type';
 
 @ObjectType()
-export default class KanbanBoard {
+export class KanbanBoard {
 
   @Field()
   id: number;

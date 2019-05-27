@@ -3,12 +3,6 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
-type KanbaBoardResponse {
-  items: [KanbanBoard!]!
-  total: Int!
-  hasMore: Boolean!
-}
-
 type Kanban {
   id: Float!
   label: String!
@@ -20,6 +14,12 @@ type KanbanBoard {
   label: String!
   description: String
   cards: [KanbanCard!]!
+}
+
+type KanbanBoardResponse {
+  items: [KanbanBoard!]!
+  total: Int!
+  hasMore: Boolean!
 }
 
 type KanbanCard {
@@ -52,6 +52,6 @@ type Mutation {
 
 type Query {
   kanbans(first: Int = 10): KanbansResponse!
-  kanbanBoards(first: Int = 10): KanbaBoardResponse!
+  kanbanBoards(first: Int = 10): KanbanBoardResponse!
   kanbanCards(first: Int = 10): KanbanCardResponse!
 }

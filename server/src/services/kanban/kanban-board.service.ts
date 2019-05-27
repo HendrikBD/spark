@@ -1,20 +1,25 @@
 import { Service, Inject } from 'typedi';
 import PgService from '../pgService';
 
+import { KanbanBoard } from '../../schema/types/kanban/kanban-board.type';
+
 @Service()
 export default class KanbanBoardService extends PgService {
 
-  counter: number;
-
   constructor(container) {
     super();
-
-    this.counter = 0;
   }
 
-  async getAll() {
-    this.counter++;
-    return ['stuff', this.counter];
+  getAll(): Promise<KanbanBoard[]> {
+    return new Promise((resolve, reject) => {
+      this.knex.select({
+        'id': 'kanban_boards_view.id',
+        'label': 'kanban_boards_view.label',
+        'description': 'kanban_boards_view.description',
+        'cards': 'kanban_boards_view.cards'
+      }).from('kanban_boards_view')
+        .then(resolve);
+    });
   }
 
 }

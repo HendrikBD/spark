@@ -16,8 +16,6 @@ export default class KanbanCardResolver {
     private readonly kanbanCardService: KanbanCardService
   ) {}
 
-  private readonly kanbanCards = createSampleKanbanCards();
-
   @Query(returns => KanbanCardResponse, { name: 'kanbanCards' })
   async getKanbanCards(
     @Arg('first', type => Int, { nullable: true, defaultValue: 10 }) first: number

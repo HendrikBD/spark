@@ -1,7 +1,7 @@
 import { ObjectType, Query, Mutation, Arg, Int, Resolver } from 'type-graphql';
 
 import PaginatedResponse from '../../types/common/paginated-response.type';
-import Kanban from '../../types/kanban/kanban.type';
+import { Kanban } from '../../types/kanban/kanban.type';
 import createSampleKanbans from '../../samples/kanban/kanban.samples';
 
 import KanbanService from '../../../services/kanban/kanban.service';
@@ -19,13 +19,15 @@ export default class KanbanResolver {
 
   private readonly kanbans = createSampleKanbans();
 
-  @Query({ name: 'kanbans' })
-  getKanban(
+  @Query(returns => KanbansResponse, { name: 'kanbans' })
+  async getKanban(
     @Arg('first', type => Int, { nullable: true, defaultValue: 10 }) first: number
-  ): KanbansResponse {
-    const total = this.kanbans.length;
+  ): Promise<KanbansResponse> {
+    const kanbans = await this.kanbanService.getAll(),
+      total = kanbans.length;
+
     return {
-      items: this.kanbans.slice(0, first),
+      items: kanbans,
       hasMore: total > first,
       total
     };

@@ -1,9 +1,10 @@
-import { ObjectType, InputType, Field, Int } from 'type-graphql';
+import { ObjectType, InputType, Field, Int, Authorized } from 'type-graphql';
 import { MaxLength } from 'class-validator';
 
 @ObjectType()
 export class KanbanCard {
 
+  @Authorized()
   @Field()
   id: number;
 

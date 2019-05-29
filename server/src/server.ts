@@ -6,16 +6,20 @@ import * as path from 'path';
 import dotenv from 'dotenv';
 
 import ErrorService from './services/error.service';
+import AuthService from './services/auth.service';
+import { authCheck } from './services/auth.service';
 import KanbanResolvers from './schema/resolvers/kanban';
 
 dotenv.config();
 Container.set('ErrorHandler', new ErrorService());
+Container.set('AuthService', new AuthService());
 
 async function bootstrap() {
   const schema = await buildSchema({
-    resolvers: [<any>KanbanResolvers],
+    resolvers: [KanbanResolvers as any],
     emitSchemaFile: path.resolve(__dirname, 'schema.gql'),
     validate: false,
+    authChecker: authCheck,
     container: Container
   });
 

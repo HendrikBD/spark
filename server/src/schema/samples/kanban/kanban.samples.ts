@@ -1,4 +1,4 @@
-import Kanban from '../../types/kanban/kanban.type';
+import { Kanban } from '../../types/kanban/kanban.type';
 
 export default function createSampleKanbanBoards(): Kanban[] {
   return [

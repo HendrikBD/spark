@@ -20,19 +20,42 @@ export class User {
 
 }
 
-@InputType()
-export class UserBody {
+export class UserSimple {
 
   @Field()
-  @MaxLength(30)
+  id: number;
+
+  @Field()
   username?: string;
 
   @Field()
-  @MaxLength(255)
   email?: string;
+
+}
+
+@InputType()
+export class UserLoginBody {
 
   @Field()
   @MaxLength(255)
-  password?: string;
+  email: string;
+
+  @Field()
+  @MaxLength(255)
+  password: string;
+
+}
+
+@InputType()
+export class NewUserBody {
+
+  @Field()
+  @MaxLength(255)
+  email: string;
+
+  @Field()
+  name: string;
+
+  passHash: string;
 
 }

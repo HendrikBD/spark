@@ -10,6 +10,11 @@ export default class ErrorService {
     this.count = 0;
   }
 
+  log(err) {
+    console.log('logging from error service');
+    console.log(err);
+  }
+
   get() {
     this.count++;
     console.log('get error');

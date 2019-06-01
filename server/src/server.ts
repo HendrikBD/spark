@@ -31,6 +31,17 @@ async function bootstrap() {
     authChecker: authCheck,
     container: Container
   });
+  const server = new ApolloServer({
+    schema,
+    context: ({ req }) => {
+      const context = {
+        req,
+        user: (req as any).user
+      };
+      return context;
+    },
+    playground: process.env.GQL_PLAYGROUND === 'true'
+  });
 
   app.use('/', bodyParser.json());
   app.post('/login', (Container.get('AuthService') as AuthService).login.bind(Container.get('AuthService')));
@@ -53,20 +64,6 @@ async function bootstrap() {
     console.log('test');
     res.json({test: true});
   });
-
-
-  const server = new ApolloServer({
-    schema,
-    context: ({ req }) => {
-      const context = {
-        req,
-        user: (req as any).user
-      };
-      return context;
-    },
-    playground: process.env.GQL_PLAYGROUND === 'true'
-  });
-
 
   server.applyMiddleware({ app, path: gqlPath });
 

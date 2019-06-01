@@ -20,8 +20,8 @@ export default class KanbanCardResolver {
   async getKanbanCards(
     @Arg('first', type => Int, { nullable: true, defaultValue: 10 }) first: number
   ): Promise<KanbanCardResponse> {
-    const cards = await this.kanbanCardService.getAll(),
-      total = cards.length;
+    const cards = await this.kanbanCardService.getAll();
+    const total = cards.length;
 
     return {
       items: cards,

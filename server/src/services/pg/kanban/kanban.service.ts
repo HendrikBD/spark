@@ -1,7 +1,7 @@
 import { Service, Inject } from 'typedi';
-import PgService from '../pgService';
+import PgService from '../pg.service';
 
-import { Kanban } from '../../schema/types/kanban/kanban.type';
+import { Kanban } from '../../../schema/types/kanban/kanban.type';
 
 @Service()
 export default class KanbanService extends PgService {

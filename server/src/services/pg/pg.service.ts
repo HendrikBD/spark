@@ -1,4 +1,4 @@
-import ErrorService from './error.service';
+import ErrorService from '../error.service';
 import { Container } from 'typedi';
 import Knex from 'knex';
 

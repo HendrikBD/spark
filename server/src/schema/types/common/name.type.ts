@@ -15,19 +15,3 @@ export class Name {
   last: string;
 
 }
-
-// @InputType()
-// export class NameBody {
-//
-//   @Field()
-//   @MaxLength(50)
-//   first: string;
-//
-//   @Field()
-//   middle: string[];
-//
-//   @Field()
-//   @MaxLength(50)
-//   last: string;
-//
-// }

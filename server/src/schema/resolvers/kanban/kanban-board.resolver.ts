@@ -3,7 +3,7 @@ import { ObjectType, Query, Mutation, Arg, Int, Resolver } from 'type-graphql';
 import PaginatedResponse from '../../types/common/paginated-response.type';
 
 import { KanbanBoard } from '../../types/kanban/kanban-board.type';
-import KanbanBoardService from '../../../services/kanban/kanban-board.service';
+import KanbanBoardService from '../../../services/pg/kanban/kanban-board.service';
 
 @ObjectType()
 class KanbanBoardResponse extends PaginatedResponse(KanbanBoard) {}
@@ -20,8 +20,8 @@ export default class KanbanBoardsResolver {
     @Arg('first', type => Int, { nullable: true, defaultValue: 10 }) first: number
   ): Promise<KanbanBoardResponse> {
 
-    const boards = await this.kanbanBoardService.getAll(),
-      total = boards.length;
+    const boards = await this.kanbanBoardService.getAll();
+    const total = boards.length;
 
     return {
       items: boards,

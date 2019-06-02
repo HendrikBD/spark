@@ -4,7 +4,6 @@ import { MaxLength } from 'class-validator';
 @ObjectType()
 export class KanbanCard {
 
-  @Authorized()
   @Field()
   id: number;
 

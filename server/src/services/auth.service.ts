@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
 import ErrorService from './error.service';
-import UserService from './management/user.service';
+import UserService from './pg/management/user.service';
 
 import { User, UserLoginBody, NewUserBody } from '../schema/types/management/user.type';
 import { ContextType } from '../schema/types/common/context.type';

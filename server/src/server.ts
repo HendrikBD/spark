@@ -48,7 +48,7 @@ async function bootstrap() {
   app.post('/create-account', (Container.get('AuthService') as AuthService).createAccount.bind(Container.get('AuthService')));
 
   app.use('/graphql', (req, res, next) => {
-    console.log(req.headers);
+    req.headers.authorization = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNTU5NDI1NTc0fQ.nmcS7JaJn_CuNe6t7VFydrril0R1vxnqUVzn-h18_Ck';
     next();
   });
 

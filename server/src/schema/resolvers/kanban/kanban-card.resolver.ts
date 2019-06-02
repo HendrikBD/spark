@@ -4,7 +4,7 @@ import PaginatedResponse from '../../types/common/paginated-response.type';
 import { KanbanCard, KanbanCardBody } from '../../types/kanban/kanban-card.type';
 import createSampleKanbanCards from '../../samples/kanban/kanban-card.samples';
 
-import KanbanCardService from '../../../services/kanban/kanban-card.service';
+import KanbanCardService from '../../../services/pg/kanban/kanban-card.service';
 
 @ObjectType()
 class KanbanCardResponse extends PaginatedResponse(KanbanCard) {}

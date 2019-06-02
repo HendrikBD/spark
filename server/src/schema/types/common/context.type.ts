@@ -1,4 +1,4 @@
-import { User } from '../management/user/user.type';
+import { User } from '../management/user.type';
 
 export class ContextType {
   user?: User;

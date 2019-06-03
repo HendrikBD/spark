@@ -13,4 +13,6 @@ export class Kanban {
   @Field(type => [KanbanBoard])
   boards: KanbanBoard[];
 
+  authorizedUsers?: number[];
+
 }

@@ -24,6 +24,8 @@ export default class KanbanResolver {
   @Query(returns => KanbansResponse, { name: 'kanbans' })
   async getKanbans(
     @Arg('id', { nullable: true }) id: number,
+    // Depth parameter can be used to specify the number of kanbans to include
+    @Arg('depth', { nullable: true }) depth: number = 1,
     @Ctx() ctx: Context
   ): Promise<KanbansResponse> {
     const queryMutator: QueryMutator = {
@@ -46,6 +48,28 @@ export default class KanbanResolver {
       hasMore: false,
       total
     };
+  }
+
+  @Query(returns => Kanban, { name: 'kanban' })
+  async getKanban(
+    @Arg('id') id: number,
+    @Ctx() ctx: Context
+  ): Promise<Kanban> {
+    const queryMutator: QueryMutator = {
+      filters: [
+        [{
+          raw: `kanbans_authorized_users_view.authorized_users && '{${ctx.user.id}}'::Int[]`
+        }],
+        [{
+          column: 'kanbans.id',
+          op: '=',
+          value: id
+        }]
+      ]
+    };
+    const kanban = await this.kanbanService.getOne(id, ctx.user.id);
+
+    return kanban;
   }
 
   @Mutation()

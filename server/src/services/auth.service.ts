@@ -7,7 +7,7 @@ import ErrorService from './error.service';
 import UserService from './pg/management/user.service';
 
 import { User, UserLoginBody, NewUserBody } from '../schema/types/management/user.type';
-import { ContextType } from '../schema/types/common/context.type';
+import { Context } from '../schema/types/common/context.type';
 import { Token } from '../schema/types/management/token.type';
 
 
@@ -83,7 +83,7 @@ export default class AuthService {
 
 }
 
-export const authCheck: AuthChecker<ContextType> = ({context: {user}}, roles) => {
+export const authCheck: AuthChecker<Context> = ({context: {user}}, roles) => {
   console.log('auth check');
   const authService: AuthService = Container.get('AuthService');
   authService.test();

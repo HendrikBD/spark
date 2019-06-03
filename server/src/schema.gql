@@ -51,7 +51,7 @@ type Mutation {
 }
 
 type Query {
-  kanbans(first: Int = 10): KanbansResponse!
+  kanbans(id: Float): KanbansResponse!
   kanbanBoards(first: Int = 10): KanbanBoardResponse!
   kanbanCards(first: Int = 10): KanbanCardResponse!
 }

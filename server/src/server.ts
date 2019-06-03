@@ -36,7 +36,7 @@ async function bootstrap() {
     context: ({ req }) => {
       const context = {
         req,
-        user: (req as any).user
+        user: (req as any).user.user
       };
       return context;
     },

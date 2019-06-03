@@ -1,5 +1,5 @@
 import { User } from '../management/user.type';
 
-export class ContextType {
+export class Context {
   user?: User;
 }

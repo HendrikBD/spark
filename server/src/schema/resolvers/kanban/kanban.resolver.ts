@@ -26,6 +26,7 @@ export default class KanbanResolver {
     @Arg('id', { nullable: true }) id: number,
     // Depth parameter can be used to specify the number of kanbans to include
     @Arg('depth', { nullable: true }) depth: number = 1,
+    @Arg('root', { nullable: true }) root: boolean = true,
     @Ctx() ctx: Context
   ): Promise<KanbansResponse> {
     const queryMutator: QueryMutator = {

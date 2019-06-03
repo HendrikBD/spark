@@ -52,7 +52,7 @@ type Mutation {
 }
 
 type Query {
-  kanbans(depth: Float, id: Float): KanbansResponse!
+  kanbans(root: Boolean, depth: Float, id: Float): KanbansResponse!
   kanban(id: Float!): Kanban!
   kanbanBoards(first: Int = 10): KanbanBoardResponse!
   kanbanCards(first: Int = 10): KanbanCardResponse!

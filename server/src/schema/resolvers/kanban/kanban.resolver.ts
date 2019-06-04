@@ -38,6 +38,11 @@ export default class KanbanResolver {
           column: 'kanbans.id',
           op: '=',
           value: id
+        }]] : []),
+        ...(root ? [[{
+          column: 'kanbans_root_view.is_root',
+          op: '=',
+          value: true
         }]] : [])
       ]
     };

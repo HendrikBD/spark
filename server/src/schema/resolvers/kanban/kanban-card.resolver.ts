@@ -1,7 +1,7 @@
 import { ObjectType, Query, Mutation, Arg, Int, Resolver } from 'type-graphql';
 
 import PaginatedResponse from '../../types/common/paginated-response.type';
-import { KanbanCard, KanbanCardBody } from '../../types/kanban/kanban-card.type';
+import { KanbanCard, KanbanCardInputBody } from '../../types/kanban/kanban-card.type';
 import createSampleKanbanCards from '../../samples/kanban/kanban-card.samples';
 
 import KanbanCardService from '../../../services/pg/kanban/kanban-card.service';
@@ -31,17 +31,11 @@ export default class KanbanCardResolver {
   }
 
   @Mutation(returns => KanbanCard)
-  async addKanbanCard(@Arg('Input') kanbanCardBody: KanbanCardBody): Promise<KanbanCard> {
-    console.assert(kanbanCardBody.label.length <= 30);
-    console.assert(kanbanCardBody.label.length <= 255);
-    console.log('looking to add:');
-    console.log(kanbanCardBody);
+  async addKanbanCard(@Arg('kanbanCardInputBody') newKanbanCard: KanbanCardInputBody): Promise<KanbanCard> {
+    console.assert(newKanbanCard.label.length <= 30);
+    console.assert(newKanbanCard.label.length <= 255);
 
-    const kanbanCard: KanbanCard = {
-      id: 4,
-      label: 'testing',
-      description: 'a descript'
-    };
+    const kanbanCard = await this.kanbanCardService.create(newKanbanCard);
 
     return kanbanCard;
   }

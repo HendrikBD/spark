@@ -34,7 +34,7 @@ export default class KanbanBoardsResolver {
 
   @Mutation(returns => KanbanBoard, { name: 'addKanbanBoard' })
   async addKanbanBoard(
-    @Arg('KanbanBoardInputBody') newKanbanBoard: KanbanBoardInputBody,
+    @Arg('kanbanBoardInputBody') newKanbanBoard: KanbanBoardInputBody,
     @Ctx() ctx: Context
   ): Promise<KanbanBoard> {
     const kanbanBoard = await this.kanbanBoardService.create(newKanbanBoard);

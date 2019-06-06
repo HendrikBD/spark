@@ -35,9 +35,10 @@ type KanbanCard {
   kanban: Kanban
 }
 
-input KanbanCardBody {
+input KanbanCardInputBody {
   label: String!
-  description: String!
+  description: String
+  parentBoardId: Float!
 }
 
 type KanbanCardResponse {
@@ -60,8 +61,8 @@ type KanbansResponse {
 
 type Mutation {
   addKanban(kanbanInputBody: KanbanInputBody!): Kanban!
-  addKanbanBoard(KanbanBoardInputBody: KanbanBoardInputBody!): KanbanBoard!
-  addKanbanCard(Input: KanbanCardBody!): KanbanCard!
+  addKanbanBoard(kanbanBoardInputBody: KanbanBoardInputBody!): KanbanBoard!
+  addKanbanCard(kanbanCardInputBody: KanbanCardInputBody!): KanbanCard!
 }
 
 type Query {

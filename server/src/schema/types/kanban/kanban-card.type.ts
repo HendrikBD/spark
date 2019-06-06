@@ -21,14 +21,17 @@ export class KanbanCard {
 }
 
 @InputType()
-export class KanbanCardBody {
+export class KanbanCardInputBody {
 
   @Field()
   @MaxLength(30)
   label: string;
 
-  @Field()
+  @Field({ nullable: true })
   @MaxLength(255)
   description?: string;
+
+  @Field()
+  parentBoardId: number;
 
 }

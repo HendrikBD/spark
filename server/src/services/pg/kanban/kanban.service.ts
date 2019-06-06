@@ -1,7 +1,7 @@
 import { Service, Inject } from 'typedi';
 import PgService from '../pg.service';
 
-import { Kanban } from '../../../schema/types/kanban/kanban.type';
+import { Kanban, KanbanInputBody } from '../../../schema/types/kanban/kanban.type';
 import { QueryMutator } from '../../../schema/types/common/query-mutator.type';
 
 @Service()
@@ -59,6 +59,41 @@ export default class KanbanService extends PgService {
           resolve();
         }
       });
+    });
+  }
+
+  create(newKanban: KanbanInputBody) {
+    return new Promise((resolve, reject) => {
+      let kanban: Kanban;
+
+      this.knex.insert({label: newKanban.label}).into('kanbans').returning('*').then(res => {
+        kanban = res[0];
+
+        return Promise.all([
+
+          ...(
+            newKanban.parentCardId ? [
+              this.knex.insert({parent_id: newKanban.parentCardId, child_id: kanban.id}).into('kanbans_cards_child_kanbans')
+            ] : []
+          ),
+
+          ...(
+            newKanban.users.map(user => {
+              return this.knex.insert({
+                kanban_id: kanban.id,
+                user_id: user.id
+              }).into('kanbans_users_link');
+            })
+          )
+
+        ]);
+
+      }).then(() => {
+
+        resolve(this.getOne(kanban.id, newKanban.users[0].id));
+
+      }).catch(this.error.log);
+
     });
   }
 

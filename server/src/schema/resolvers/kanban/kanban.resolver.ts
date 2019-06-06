@@ -1,7 +1,7 @@
 import { ObjectType, Query, Mutation, Arg, Ctx, Int, Resolver } from 'type-graphql';
 
 import PaginatedResponse from '../../types/common/paginated-response.type';
-import { Kanban } from '../../types/kanban/kanban.type';
+import { Kanban, KanbanInputBody } from '../../types/kanban/kanban.type';
 import { Context } from '../../types/common/context.type';
 import { QueryMutator } from '../../types/common/query-mutator.type';
 
@@ -29,6 +29,7 @@ export default class KanbanResolver {
     @Arg('root', { nullable: true }) root: boolean = true,
     @Ctx() ctx: Context
   ): Promise<KanbansResponse> {
+
     const queryMutator: QueryMutator = {
       filters: [
         [{
@@ -46,6 +47,7 @@ export default class KanbanResolver {
         }]] : [])
       ]
     };
+
     const kanbans = await this.kanbanService.getAll(queryMutator);
     const total = kanbans.length;
 
@@ -78,14 +80,13 @@ export default class KanbanResolver {
     return kanban;
   }
 
-  @Mutation()
-  addSampleKanbanBoard(): Kanban {
-    const kanban: Kanban = {
-      id: 4,
-      label: 'testing',
-      boards: []
-    };
+  @Mutation(returns => Kanban, { name: 'addKanban' })
+  async addKanban(@Arg('kanbanInputBody') newKanban: KanbanInputBody, @Ctx() ctx: Context): Promise<Kanban> {
 
-    return kanban;
+    newKanban.users = [ctx.user];
+
+    const kanban = await this.kanbanService.create(newKanban);
+
+    return kanban as Promise<Kanban>;
   }
 }

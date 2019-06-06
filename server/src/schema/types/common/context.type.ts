@@ -1,5 +1,5 @@
-import { User } from '../management/user.type';
+import { UserSimple } from '../management/user.type';
 
 export class Context {
-  user?: User;
+  user?: UserSimple;
 }

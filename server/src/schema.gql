@@ -40,6 +40,12 @@ type KanbanCardResponse {
   hasMore: Boolean!
 }
 
+"""New kanban data"""
+input KanbanInputBody {
+  label: String!
+  parentCardId: Float
+}
+
 type KanbansResponse {
   items: [Kanban!]!
   total: Int!
@@ -47,6 +53,7 @@ type KanbansResponse {
 }
 
 type Mutation {
+  addKanban(kanbanInputBody: KanbanInputBody!): Kanban!
   addSampleKanbanBoard: KanbanBoard!
   addKanbanCard(Input: KanbanCardBody!): KanbanCard!
 }

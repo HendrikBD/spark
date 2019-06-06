@@ -16,6 +16,12 @@ type KanbanBoard {
   cards: [KanbanCard!]!
 }
 
+input KanbanBoardInputBody {
+  parentKanbanId: Float!
+  label: String!
+  description: String
+}
+
 type KanbanBoardResponse {
   items: [KanbanBoard!]!
   total: Int!
@@ -54,7 +60,7 @@ type KanbansResponse {
 
 type Mutation {
   addKanban(kanbanInputBody: KanbanInputBody!): Kanban!
-  addSampleKanbanBoard: KanbanBoard!
+  addKanbanBoard(KanbanBoardInputBody: KanbanBoardInputBody!): KanbanBoard!
   addKanbanCard(Input: KanbanCardBody!): KanbanCard!
 }
 

@@ -1,8 +1,10 @@
-import { ObjectType, Query, Mutation, Arg, Int, Resolver } from 'type-graphql';
+import { ObjectType, Query, Mutation, Arg, Int, Resolver, Ctx } from 'type-graphql';
 
 import PaginatedResponse from '../../types/common/paginated-response.type';
 
-import { KanbanBoard } from '../../types/kanban/kanban-board.type';
+import { QueryMutator } from '../../types/common/query-mutator.type';
+import { Context } from '../../types/common/context.type';
+import { KanbanBoard, KanbanBoardInputBody } from '../../types/kanban/kanban-board.type';
 import KanbanBoardService from '../../../services/pg/kanban/kanban-board.service';
 
 @ObjectType()
@@ -30,14 +32,12 @@ export default class KanbanBoardsResolver {
     };
   }
 
-  @Mutation()
-  addSampleKanbanBoard(): KanbanBoard {
-    const kanbanBoard: KanbanBoard = {
-      id: 4,
-      label: 'testing',
-      description: 'a descript',
-      cards: []
-    };
+  @Mutation(returns => KanbanBoard, { name: 'addKanbanBoard' })
+  async addKanbanBoard(
+    @Arg('KanbanBoardInputBody') newKanbanBoard: KanbanBoardInputBody,
+    @Ctx() ctx: Context
+  ): Promise<KanbanBoard> {
+    const kanbanBoard = await this.kanbanBoardService.create(newKanbanBoard);
 
     return kanbanBoard;
   }

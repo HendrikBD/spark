@@ -32,19 +32,23 @@ export default class KanbanResolver {
 
     const queryMutator: QueryMutator = {
       filters: [
+
         [{
           raw: `kanbans_authorized_users_view.authorized_users && '{${ctx.user.id}}'::Int[]`
         }],
+
         ...(id ? [[{
           column: 'kanbans.id',
           op: '=',
           value: id
         }]] : []),
+
         ...(root ? [[{
           column: 'kanbans_root_view.is_root',
           op: '=',
           value: true
         }]] : [])
+
       ]
     };
 

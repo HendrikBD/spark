@@ -18,4 +18,20 @@
   </li>
 </ul>
 
+<div>
+  <div>
+    TEST
+  </div>
+
+  {{kanbanCards | async}}
+
+  <div *ngFor="let card of kanbanCards.value">
+    {{card | json}}
+  </div>
+
+  <div>
+    TEST
+  </div>
+</div>
+
 <router-outlet></router-outlet>

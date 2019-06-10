@@ -15,6 +15,14 @@ export default class ErrorService {
     console.log(err);
   }
 
+  respond(res, err) {
+    this.log(err);
+    res.json({
+      message: err.message,
+      success: false
+    });
+  }
+
   get() {
     this.count++;
     console.log('get error');

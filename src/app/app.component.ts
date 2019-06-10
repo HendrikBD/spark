@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
+import { AuthService } from './core/services/management/auth.service';
+
 import { KanbanCard, KanbanCardQuery } from './core/types/kanbans/kanban-card.type';
 
 @Component({
@@ -15,7 +17,8 @@ export class AppComponent implements OnInit {
   title = 'spark';
 
   constructor(
-    private apollo: Apollo
+    private apollo: Apollo,
+    private authService: AuthService
   ) {}
 
   kanbanCardsQuery: Observable<KanbanCard[]>;
@@ -40,6 +43,8 @@ export class AppComponent implements OnInit {
     this.kanbanCardsQuery.subscribe(res => {
       this.kanbanCards.next(res);
     });
+
+    this.authService.createAccount('new11@email.com', 'pass');
 
   }
 

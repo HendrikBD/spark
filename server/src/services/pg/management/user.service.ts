@@ -2,6 +2,7 @@ import { Service, Inject } from 'typedi';
 import PgService from '../pg.service';
 
 import { User, NewUserBody, UserLoginBody } from '../../../schema/types/management/user.type';
+import { QueryMutator } from '../../../schema/types/common/query-mutator.type';
 
 @Service()
 export default class UserService extends PgService {
@@ -10,7 +11,7 @@ export default class UserService extends PgService {
     super();
   }
 
-  getAll(): Promise<User[]> {
+  getAll(queryMutator: QueryMutator): Promise<User[]> {
     return new Promise((resolve, reject) => {
       this.knex.select({
         'id': 'users.id',
@@ -21,6 +22,18 @@ export default class UserService extends PgService {
     });
   }
 
+  getById(id: number): Promise<User> {
+    return new Promise((resolve, reject) => {
+      const queryMutator = {
+        filters: [[{ column: 'users.id', op: '=', value: id }]]
+      };
+
+      this.getAll(queryMutator).then(modelResponse => {
+        resolve(modelResponse[0]);
+      });
+    });
+  }
+
   getForLogin(email: string): Promise<User> {
     return new Promise((resolve, reject) => {
       this.knex.select({
@@ -28,7 +41,7 @@ export default class UserService extends PgService {
         'email': 'users.email',
         'passHash': 'users.pass_hash'
       }).from('users')
-        .where({email})
+        .where({ email })
         .then(dbResponse => {
           resolve(dbResponse[0]);
         })
@@ -44,7 +57,7 @@ export default class UserService extends PgService {
         pass_hash: newUser.passHash
       }).returning('id').then(res => {
         resolve(res);
-      }).catch(this.error.log);
+      }).catch(reject);
     });
   }
 

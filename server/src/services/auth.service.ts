@@ -39,7 +39,7 @@ export default class AuthService {
         else {
           return bcrypt.compare(userLogin.password, user.passHash).then(isValid => {
             if (isValid) {
-              const testToken: Token = {
+              const token: Token = {
                 user: {
                   id: user.id
                 }
@@ -47,7 +47,7 @@ export default class AuthService {
 
               res.json({
                 success: true,
-                jwt: jwt.sign(testToken, process.env.JWT_KEY)
+                jwt: jwt.sign(token, process.env.JWT_KEY)
               });
 
             } else {
@@ -59,26 +59,38 @@ export default class AuthService {
           });
         }
       })
-      .catch(console.error);
+      .catch(err => this.errorService.respond(res, err));
 
   }
 
   createAccount(req, res) {
+    console.log('createAccount');
     const saltRounds = 3;
 
     bcrypt.hash(req.body.password, saltRounds).then((hash) => {
+
       const newUser: NewUserBody = {
         email: req.body.email,
         name: req.body.name,
         passHash: hash
       };
-      this.userService.create(newUser).then(() => {
-        res.json({success: true});
-      }).catch(() => {
-        res.json({success: false});
-      });
 
-    }).catch(console.error);
+      return this.userService.create(newUser);
+
+    }).then(insertResponse => {
+
+      return this.userService.getById(insertResponse[0]);
+
+    }).then(userResponse => {
+      const token: Token = {
+        user: {
+          id: userResponse.id
+        }
+      };
+
+      res.json({success: true, jwt: jwt.sign(token, process.env.JWT_KEY)});
+
+    }).catch(err => this.errorService.respond(res, err));
   }
 
 }

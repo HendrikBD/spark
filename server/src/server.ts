@@ -57,6 +57,11 @@ async function bootstrap() {
     jwt({
       secret: process.env.JWT_KEY,
       credentialsRequired: true
+    }).unless({
+      path: [
+        '/create-account',
+        '/login'
+      ]
     })
   );
 

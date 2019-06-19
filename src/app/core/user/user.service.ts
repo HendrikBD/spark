@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { User } from '../../types/management/user.type';
+import { User } from '../user/user.type';
 
 @Injectable()
 export class  UserService {

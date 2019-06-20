@@ -2,3 +2,26 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import './assets/styles/bootstrap/bootstrap.min.css';
+
+@font-face {
+  font-family: roboto;
+  src: url(assets/fonts/roboto/Roboto-Regular.ttf) format('opentype');
+}
+
+
+.btn.btn-primary {
+  background: #3478b6;
+  border-color: #4a83b7;
+}
+
+.btn.btn-primary:hover {
+  background: #3b6f9e;
+  border-color: #5e86ab;
+}
+
+label {
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}

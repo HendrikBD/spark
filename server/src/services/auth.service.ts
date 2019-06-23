@@ -35,8 +35,12 @@ export default class AuthService {
 
     this.userService.getForLogin(userLogin.email)
       .then(user => {
-        if (!user) console.error('No user for passed email');
-        else {
+        if (!user) {
+          this.errorService.respond(res, {
+            success: false,
+            message: 'No users exists for that email'
+          });
+        } else {
           return bcrypt.compare(userLogin.password, user.passHash).then(isValid => {
             if (isValid) {
               const token: Token = {
@@ -51,7 +55,8 @@ export default class AuthService {
               });
 
             } else {
-              res.json({
+
+              this.errorService.respond(res, {
                 success: false,
                 message: 'Invalid Password'
               });
@@ -64,7 +69,6 @@ export default class AuthService {
   }
 
   createAccount(req, res) {
-    console.log('createAccount');
     const saltRounds = 3;
 
     bcrypt.hash(req.body.password, saltRounds).then((hash) => {

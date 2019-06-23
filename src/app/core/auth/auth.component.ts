@@ -7,10 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
+  formMode = 'logIn';
+
+  styles: any = {
+    formGridAnimation: {
+      'animation-duration.s': 0.6,
+      'animation-fill-mode': 'forwards',
+      'animation-timing-function': 'ease-in-out'
+    }
+  };
+
+  exists = {
+    logIn: true,
+    createAcc: false
+  };
+
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSignIn(event) {
     event.preventDefault();
@@ -18,6 +32,37 @@ export class AuthComponent implements OnInit {
 
   onCreateAccount(event) {
     event.preventDefault();
+  }
+
+  updateFormMode(newFormMode) {
+    switch (this.formMode) {
+      case 'logIn':
+        switch (newFormMode) {
+          case 'createAcc':
+            this.exists.createAcc = true;
+            this.styles.formGridAnimation['animation-name'] = 'toLeft';
+            setTimeout(() => {
+              this.exists.logIn = false;
+              delete this.styles.formGridAnimation['animation-name'];
+            }, this.styles.formGridAnimation['animation-duration.s'] * 1000);
+            break;
+        }
+        break;
+      case 'createAcc':
+        switch (newFormMode) {
+          case 'logIn':
+            this.exists.logIn = true;
+            this.styles.formGridAnimation['animation-name'] = 'toRight';
+
+            setTimeout(() => {
+              this.exists.createAcc = false;
+              delete this.styles.formGridAnimation['animation-name'];
+            }, this.styles.formGridAnimation['animation-duration.s'] * 1000);
+            break;
+        }
+        break;
+    }
+    this.formMode = newFormMode;
   }
 
 }

@@ -1,8 +1,9 @@
 <div class="auth_container">
 
 
-  <div id="formGrid">
-    <div id="signInForm">
+  <div id="formGrid" [ngStyle]="styles.formGridAnimation">
+
+    <div id="signInForm" *ngIf="exists.logIn">
       <div class="header">
         Log In
       </div>
@@ -22,7 +23,6 @@
 
         <div class="buttons">
           <button class="btn btn-primary">Log In</button>
-          <!-- <button class="btn btn&#45;secondary" type="button">Create Account</button> -->
         </div>
 
       </form>
@@ -30,13 +30,17 @@
       <br/>
 
       <div class="footer">
-        <span class="textButton">Create an Account</span>
+        <span class="textButton" (click)="updateFormMode('createAcc')">Create an Account</span>
         Or
         <span class="textButton">Forgot Your Password</span>
       </div>
     </div>
 
-    <div id="createAccForm">
+    <div id="createAccForm" *ngIf="exists.createAcc">
+
+      <div class="header">
+        Create Account
+      </div>
 
       <form (submit)="onCreateAccount($event)">
         <div class="form-input">
@@ -60,6 +64,12 @@
           <button class="btn btn-primary">Create Account</button>
         </div>
       </form>
+      
+      <br/>
+
+      <div class="footer">
+        <span class="textButton" (click)="updateFormMode('logIn')">Log In</span>
+      </div>
     </div>
 
   </div>

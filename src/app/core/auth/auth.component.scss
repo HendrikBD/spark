@@ -19,6 +19,7 @@
     display: grid;
     grid-template-columns: 100% 100%;
 
+
     > div {
       display: flex;
       flex-direction: column;
@@ -51,8 +52,8 @@
 
           .btn {
             margin: 0.4rem;
-            padding-left: 2rem;
-            padding-right: 2rem;
+            padding-left: 5rem;
+            padding-right: 5rem;
           }
         }
       }
@@ -63,4 +64,14 @@
     }
   }
 
+}
+
+@keyframes toLeft {
+  from { left: 0;}
+  to { left: -100%;}
+}
+
+@keyframes toRight {
+  to { left: 0;}
+  from { left: -100%;}
 }

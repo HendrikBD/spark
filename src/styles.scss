@@ -1,27 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; }
 
 @import './assets/styles/bootstrap/bootstrap.min.css';
 
 @font-face {
-  font-family: roboto;
-  src: url(assets/fonts/roboto/Roboto-Regular.ttf) format('opentype');
+  font-family: Roboto;
+  src: url(assets/fonts/roboto/Roboto-Regular.ttf) format('truetype');
 }
 
-
-.btn.btn-primary {
-  background: #3478b6;
-  border-color: #4a83b7;
+@font-face {
+  font-family: IBM Plex Sans;
+  src: url(assets/fonts/IBMPlexSans/IBMPlexSans-Regular.ttf) format('truetype');
 }
 
-.btn.btn-primary:hover {
-  background: #3b6f9e;
-  border-color: #5e86ab;
+* {
+  color: #334;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
+
+.btn {
+  font-size: 1.1rem;
+
+  &.btn-primary {
+    background: #33658A;
+    border-color: #326281;
+
+    &:hover {
+      background: #3b6f9e;
+      border-color: #376995;
+    }
+    &.btn:focus,&.btn:active {
+      outline: none;
+      box-shadow: none;
+      background: #3b6f9e;
+      border-color: #376995;
+    }
+  }
+}
+
 
 label {
-  font-size: 0.95rem;
+  font-weight: 500;
   margin-bottom: 0.3rem;
+}
+
+.textButton {
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0 0.2rem;
 }

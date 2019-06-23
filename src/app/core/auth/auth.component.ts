@@ -12,4 +12,12 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSignIn(event) {
+    event.preventDefault();
+  }
+
+  onCreateAccount(event) {
+    event.preventDefault();
+  }
+
 }

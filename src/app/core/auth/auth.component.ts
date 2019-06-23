@@ -1,4 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { passwordConfirmValidator, passwordPattern } from './auth.validators';
 
 @Component({
   selector: 'app-auth',
@@ -23,15 +27,63 @@ export class AuthComponent implements OnInit {
     createAcc: false
   };
 
-  constructor() { }
+  forms = {
+    login: new FormGroup({
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl('', Validators.required)
+    }),
+    signup: new FormGroup({
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.pattern(passwordPattern)
+      ]),
+      passwordConfirm: new FormControl('')
+    })
+  };
 
-  ngOnInit() {}
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  onSignIn(event) {
+  ngOnInit() {
+    this.setValidators();
+  }
+
+  // Sets validators that require other form controls to be initialized
+  setValidators() {
+    this.forms.signup.get('passwordConfirm').setValidators(
+      passwordConfirmValidator(this.forms.signup.get('password'))
+    );
+  }
+
+  onLogIn(event) {
+    if (this.forms.login.valid) this.http.post('/api/login', this.forms.login.value).subscribe(res => {
+      console.log('successfully logged in!');
+      console.log(res);
+    });
+    else console.log('Invalid information! No request sent.');
     event.preventDefault();
   }
 
-  onCreateAccount(event) {
+  onSignUp(event) {
+    console.log(this.forms.signup.value);
+    if (this.forms.signup.valid) {
+      const signUpBody = {
+        email: this.forms.signup.get('email').value,
+        password: this.forms.signup.get('password').value
+      };
+      this.http.post('/api/create-account', this.forms.signup.value).subscribe(res => {
+        console.log('successfully created account!');
+        console.log(res);
+      });
+    } else console.log('Invalid information! No request sent.');
     event.preventDefault();
   }
 

@@ -62,9 +62,7 @@ app-auth {
 
               .btn {
                 margin: 0.4rem;
-                min-width: 11rem;
-                // padding-left: 5rem;
-                // padding-right: 5rem;
+                min-width: 15rem;
               }
             }
           }
@@ -72,6 +70,11 @@ app-auth {
         .footer {
           text-align: center;
           padding-top: 2rem;
+        }
+
+        &#signInForm .buttons {
+          padding-top: 4rem;
+          padding-bottom: 1rem;
         }
       }
     }

@@ -12,7 +12,7 @@ export class AuthComponent implements OnInit {
 
   styles: any = {
     formGridAnimation: {
-      'animation-duration.s': 0.6,
+      'animation-duration.s': 0.3,
       'animation-fill-mode': 'forwards',
       'animation-timing-function': 'ease-in-out'
     }

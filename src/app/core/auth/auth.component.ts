@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { passwordConfirmValidator, passwordPattern } from './auth.validators';
 
@@ -49,7 +51,8 @@ export class AuthComponent implements OnInit {
   };
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -64,11 +67,13 @@ export class AuthComponent implements OnInit {
   }
 
   onLogIn(event) {
-    if (this.forms.login.valid) this.http.post('/api/login', this.forms.login.value).subscribe(res => {
-      console.log('successfully logged in!');
-      console.log(res);
-    });
-    else console.log('Invalid information! No request sent.');
+    if (this.forms.login.valid) {
+      (this.http.post('/api/login', this.forms.login.value) as any).subscribe(res => {
+        if (res.success) {
+          this.saveToken(res.jwt, res.expiration);
+        }
+      });
+    } else console.log('Invalid information! No request sent.');
     event.preventDefault();
   }
 
@@ -79,12 +84,23 @@ export class AuthComponent implements OnInit {
         email: this.forms.signup.get('email').value,
         password: this.forms.signup.get('password').value
       };
-      this.http.post('/api/create-account', this.forms.signup.value).subscribe(res => {
-        console.log('successfully created account!');
-        console.log(res);
+      (this.http.post('/api/create-account', this.forms.signup.value) as Observable<any>).subscribe(res => {
+        if (res.success) {
+          this.saveToken(res.jwt, res.expiration);
+        }
       });
     } else console.log('Invalid information! No request sent.');
     event.preventDefault();
+  }
+
+  saveToken(jwt, expiration) {
+    localStorage.setItem('jwt', jwt);
+    localStorage.setItem('jwtExpiration', expiration);
+  }
+
+  logout() {
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('jwtExpiration');
   }
 
   updateFormMode(newFormMode) {

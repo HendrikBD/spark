@@ -2,6 +2,7 @@ import { Service, Container} from 'typedi';
 import { AuthChecker } from 'type-graphql';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import moment from 'moment';
 
 import ErrorService from './error.service';
 import UserService from './pg/management/user.service';
@@ -51,7 +52,8 @@ export default class AuthService {
 
               res.json({
                 success: true,
-                jwt: jwt.sign(token, process.env.JWT_KEY)
+                jwt: jwt.sign(token, process.env.JWT_KEY, { expiresIn: process.env.JWT_EXPIRATION_DAYS + 'D' }),
+                expiration: moment(Date.now()).add(process.env.JWT_EXPIRATION_DAYS, 'd').valueOf()
               });
 
             } else {
@@ -92,7 +94,11 @@ export default class AuthService {
         }
       };
 
-      res.json({success: true, jwt: jwt.sign(token, process.env.JWT_KEY)});
+      res.json({
+        success: true,
+        jwt: jwt.sign(token, process.env.JWT_KEY, { expiresIn: process.env.JWT_EXPIRATION_DAYS + 'D' }),
+        expiration: moment(Date.now()).add(process.env.JWT_EXPIRATION_DAYS, 'd').valueOf()
+      });
 
     }).catch(err => this.errorService.respond(res, err));
   }

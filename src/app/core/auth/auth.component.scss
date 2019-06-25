@@ -6,15 +6,16 @@ app-auth {
   align-items: center;
 
   .auth_container {
-    background: #67463363;
+    background: #EEEEEE5c;
     width: 40vw;
     min-width: 600px;
-    height: 65vh;
+    height: 550px;
+    max-height: 85vh;
     box-shadow: 0 0 6px 4px rgba(64, 94, 119, 0.45);
     border-radius: 4px;
     overflow: hidden;
     @media only screen and (max-width: 660px) {
-      width: 90%;
+      width: 80%;
       min-width: unset;
     }
 
@@ -31,17 +32,21 @@ app-auth {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        // justify-content: space-between;
 
         .header {
           width: 100%;
-          padding: 3rem 0;
+          padding-top: 2rem;
 
-          font-size: 3rem;
+          font-size: 2.8rem;
           font-weight: 1000;
           display: flex;
           align-items: center;
           justify-content: center;
+        }
+
+        .subheader {
+          margin-top: 0.5rem;
         }
 
         div.formBody {
@@ -49,18 +54,29 @@ app-auth {
           max-width: 500px;
           margin-bottom: 2rem;
 
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
           form {
+
+            mat-form-field {
+              width: 100%;
+              padding: 0 1rem;
+            }
 
             .form-input {
               margin-top: 0.8rem;
             }
 
             .buttons {
-              padding-top: 3rem;
+              padding-top: 2rem;
               display: flex;
               justify-content: center;
 
               .btn {
+                width: 100%;
                 margin: 0.4rem;
                 min-width: 15rem;
               }
@@ -69,12 +85,11 @@ app-auth {
         }
         .footer {
           text-align: center;
-          padding-top: 2rem;
+          padding-top: 1rem;
         }
 
-        &#signInForm .buttons {
-          padding-top: 4rem;
-          padding-bottom: 1rem;
+        &#signInForm .header {
+          padding-top: 2rem;
         }
       }
     }

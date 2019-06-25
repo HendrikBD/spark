@@ -4,8 +4,12 @@
   <div id="formGrid" [ngStyle]="styles.formGridAnimation">
 
     <div id="signInForm" *ngIf="exists.logIn">
-      <div class="header">
-        Login
+
+      <div>
+        <div class="header">
+          Spark
+        </div>
+        <div class="subheader">Welcome Back</div>
       </div>
 
       <div class="formBody">
@@ -38,11 +42,13 @@
     <div id="createAccForm" *ngIf="exists.createAcc">
 
       <div class="header">
-        Sign Up
+        Spark
       </div>
+      <div class="subheader">Join us...</div>
 
       <div class="formBody">
         <form (submit)="onSignUp($event)" [formGroup]="forms.signup">
+
           <div class="form-input">
             <label>Email</label>
             <input class="form-control" [formControl]="forms.signup.controls.email"/>

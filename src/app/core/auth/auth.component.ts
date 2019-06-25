@@ -71,6 +71,7 @@ export class AuthComponent implements OnInit {
       (this.http.post('/api/login', this.forms.login.value) as any).subscribe(res => {
         if (res.success) {
           this.saveToken(res.jwt, res.expiration);
+          this.router.navigate(['spark']);
         }
       });
     } else console.log('Invalid information! No request sent.');
@@ -87,6 +88,7 @@ export class AuthComponent implements OnInit {
       (this.http.post('/api/create-account', this.forms.signup.value) as Observable<any>).subscribe(res => {
         if (res.success) {
           this.saveToken(res.jwt, res.expiration);
+          this.router.navigate(['spark']);
         }
       });
     } else console.log('Invalid information! No request sent.');

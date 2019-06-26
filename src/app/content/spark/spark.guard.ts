@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, CanLoad, CanActivate, Route, UrlSegment } from '@angular/router';
 import * as moment from 'moment';
 
-import { UserService } from '../user/user.service';
+import { UserService } from '../../core/user/user.service';
 
 @Injectable()
 export class SparkGuard implements CanLoad {

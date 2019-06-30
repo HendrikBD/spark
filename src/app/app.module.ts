@@ -17,7 +17,7 @@ import { AuthService } from './core/auth/auth.service';
 import { AuthComponent } from './core/auth/auth.component';
 import { AuthInterceptor } from './core/auth/auth.interceptor';
 
-import { SparkGuard } from './content/spark/spark.guard';
+import { SparkGuard } from './spark/spark.guard';
 
 
 @NgModule({

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { SparkComponent } from './spark.component';
-import { LayoutModule } from './core/layout/layout.module';
+import { LayoutModule } from './content/layout/layout.module';
 
 const routes: Routes = [
   {

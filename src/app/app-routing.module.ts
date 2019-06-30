@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthComponent } from './core/auth/auth.component';
-import { SparkGuard } from './content/spark/spark.guard';
+import { SparkGuard } from './spark/spark.guard';
 
 const routes: Routes = [
   {
     path: 'spark',
-    loadChildren: './content/spark/spark.module#SparkModule',
+    loadChildren: './spark/spark.module#SparkModule',
     canLoad: [SparkGuard]
   },
   {

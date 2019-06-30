@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SparkComponent } from './spark.component';
 import { LayoutModule } from './content/layout/layout.module';
+import { PagesModule } from './content/pages/pages.module';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    LayoutModule
+    LayoutModule,
+    PagesModule
   ]
 })
 export class SparkModule { }

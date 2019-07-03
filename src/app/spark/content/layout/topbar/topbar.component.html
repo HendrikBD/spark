@@ -1,7 +1,17 @@
 <div class="topbar_container">
 
-  <div class="navMenu">
-    Nav Menu
+  <div class="topbar_title">
+    <spk-logo></spk-logo>
+    <div>Spark</div>
+  </div>
+
+  <div class="topbar_menu">
+    <div class="navItem" *ngFor="let menuItem of menuItems">
+      {{ menuItem.title }}
+    </div>
+  </div>
+
+  <div id="topbar_tools">
   </div>
 
 </div>

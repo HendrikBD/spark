@@ -1,0 +1,21 @@
+<div [ngClass]="{ loading: loading }" class="logo_container">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" version="1.1" height="100%" style="background: #55C1FF; border-radius: 50%;">
+    <g fill-rule="evenodd" stroke-width="0" fill="#2D3047">
+
+    <path [attr.d]="outerPath" mask="url(#ridgeMask)" />
+
+    <mask id="ridgeMask">
+    <rect width="100" height="100" fill="white"/>
+    <path [attr.d]="innerPath" />
+    <path [attr.d]="innerEyePath" />
+
+    <path [attr.d]="upperRidge" class="ridge"/>
+    <path [attr.d]="topRightRidge" class="ridge"/>
+    <path [attr.d]="bottomRightRidge" class="ridge"/>
+    <path [attr.d]="topLeftRidge" class="ridge"/>
+    <path [attr.d]="bottomLeftRidge" class="ridge"/>
+    </mask>
+
+    </g>
+  </svg>
+</div>

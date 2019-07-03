@@ -5,6 +5,8 @@ import { TopbarComponent } from './topbar/topbar.component';
 import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
+import { LogoModule } from '../common/logo/logo.module';
+
 @NgModule({
   declarations: [
     TopbarComponent,
@@ -12,7 +14,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     SidebarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    LogoModule
   ],
   exports: [LayoutComponent]
 })

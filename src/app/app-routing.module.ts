@@ -6,13 +6,13 @@ import { SparkGuard } from './spark/spark.guard';
 
 const routes: Routes = [
   {
-    path: 'spark',
-    loadChildren: './spark/spark.module#SparkModule',
-    canLoad: [SparkGuard]
-  },
-  {
     path: 'login',
     component: AuthComponent
+  },
+  {
+    path: '',
+    loadChildren: './spark/spark.module#SparkModule',
+    canLoad: [SparkGuard]
   },
   {
     path: '**',

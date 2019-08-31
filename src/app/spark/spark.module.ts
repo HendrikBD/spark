@@ -9,17 +9,24 @@ import { PagesModule } from './content/pages/pages.module';
 const routes: Routes = [
   {
     path: '',
-    component: SparkComponent
-  }
+    component: SparkComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './content/pages/pages.module#PagesModule'
+      }
+    ]
+  },
 ];
 
 @NgModule({
-  declarations: [SparkComponent],
+  declarations: [
+    SparkComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    LayoutModule,
-    PagesModule
+    LayoutModule
   ]
 })
 export class SparkModule { }

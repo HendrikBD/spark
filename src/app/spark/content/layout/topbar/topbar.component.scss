@@ -4,6 +4,7 @@ spk-topbar {
 
   border-bottom: 2px solid #d4d5d6;
   background: #fff;
+  overflow: hidden;
 
   .topbar_container {
     height: 100%;
@@ -15,7 +16,7 @@ spk-topbar {
       display: flex;
       align-items: center;
 
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 700;
 
       spk-logo {

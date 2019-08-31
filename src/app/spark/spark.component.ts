@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-spark',
+  selector: 'spk-spark',
   templateUrl: './spark.component.html',
   styleUrls: ['./spark.component.scss']
 })

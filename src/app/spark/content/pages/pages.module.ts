@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 
+import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
-import { LogoModule } from '../common/logo/logo.module';
 
 @NgModule({
   declarations: [PagesComponent],
   imports: [
     CommonModule,
-    LogoModule
-  ],
-  exports: [PagesComponent]
+    PagesRoutingModule
+  ]
 })
 export class PagesModule { }

@@ -5,7 +5,6 @@ spk-layout {
     height: 100%;
 
     display: grid;
-    grid-template-columns: 0 1fr;
     grid-template-rows: 60px 1fr;
     grid-template-areas:
     "topbar topbar"

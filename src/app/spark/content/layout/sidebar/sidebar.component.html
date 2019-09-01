@@ -1,7 +1,10 @@
 <div id="sidebar_container">
 
-  <div id="sidebar">
-    Sidebar
+  <div id="sidebar" class="noSelect">
+    <div class="sidebarMenu">
+      <spk-sidebar-item [menuItem]="menuItem" *ngFor="let menuItem of menuItems">
+      </spk-sidebar-item>
+    </div>
   </div>
 
   <div id="sidebarToggle" (click)="onSidebarToggle()">

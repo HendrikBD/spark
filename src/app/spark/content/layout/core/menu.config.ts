@@ -3,7 +3,13 @@ export const navMenu = [
     title: 'Test',
     submenu: [
       {
-        title: 'Category 1'
+        title: 'Category 1',
+        submenu: [
+          {
+            title: 'Kanban',
+            path: '/kanban'
+          }
+        ]
       }
     ]
   },

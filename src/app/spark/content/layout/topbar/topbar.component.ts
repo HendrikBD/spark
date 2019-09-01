@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { navMenu } from './core/menu.config';
+import { navMenu } from '../core/menu.config';
 
 @Component({
   selector: 'spk-topbar',

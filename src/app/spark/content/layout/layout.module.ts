@@ -6,12 +6,14 @@ import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 import { LogoModule } from '../common/logo/logo.module';
+import { SidebarItemComponent } from './sidebar/components/sidebar-item/sidebar-item.component';
 
 @NgModule({
   declarations: [
     TopbarComponent,
     LayoutComponent,
-    SidebarComponent
+    SidebarComponent,
+    SidebarItemComponent
   ],
   imports: [
     CommonModule,

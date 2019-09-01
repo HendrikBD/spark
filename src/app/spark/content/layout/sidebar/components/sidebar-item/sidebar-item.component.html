@@ -1,0 +1,11 @@
+<div class="menuItem">
+  <div class="title" (click)="onItemClick()">{{ menuItem.title }}</div>
+
+  <div class="submenu_container" *ngIf="menuItem.submenu">
+    <div class="submenu" *ngIf="menuOpen">
+      <spk-sidebar-item [menuItem]="subMenuItem" *ngFor="let subMenuItem of menuItem.submenu">
+      </spk-sidebar-item>
+    </div>
+  </div>
+
+</div>

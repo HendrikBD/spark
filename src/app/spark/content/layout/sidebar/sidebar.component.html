@@ -1,5 +1,11 @@
-<div id="sidebar">
-  <p>
-  sidebar works!
-  </p>
+<div id="sidebar_container">
+
+  <div id="sidebar">
+    Sidebar
+  </div>
+
+  <div id="sidebarToggle" (click)="onSidebarToggle()">
+    <i class="fa fa-caret-left" *ngIf="this.fullSidebar.value"></i>
+    <i class="fa fa-caret-right" *ngIf="!this.fullSidebar.value"></i>
+  </div>
 </div>

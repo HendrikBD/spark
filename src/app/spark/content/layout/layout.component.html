@@ -1,5 +1,6 @@
 <div id="layout_grid" [ngStyle]="grid.style">
-  <spk-sidebar></spk-sidebar>
+  <spk-sidebar [fullSidebar]="fullSidebar">
+  </spk-sidebar>
   <spk-topbar></spk-topbar>
   <div class="spk-pages">
     <ng-content></ng-content>

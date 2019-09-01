@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'spk-sidebar',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  @Input() fullSidebar: BehaviorSubject<boolean>;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSidebarToggle() {
+    this.fullSidebar.next(!this.fullSidebar.value);
   }
 
 }

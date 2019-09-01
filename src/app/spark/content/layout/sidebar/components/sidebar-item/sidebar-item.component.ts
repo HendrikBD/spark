@@ -21,9 +21,12 @@ export class SidebarItemComponent implements OnInit {
     this.menuOpen = !this.menuOpen;
   }
 
-  onItemClick() {
+  onItemClick(event) {
     if (this.menuItem.submenu) this.toggleMenu();
-    else if (this.menuItem.path) this.router.navigateByUrl(this.menuItem.path);
+    else if (this.menuItem.path) {
+      if (event.ctrlKey) window.open(this.menuItem.path);
+      else this.router.navigateByUrl(this.menuItem.path);
+    }
   }
 
 }

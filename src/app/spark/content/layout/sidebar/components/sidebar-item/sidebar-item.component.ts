@@ -15,10 +15,7 @@ export class SidebarItemComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() {
-    console.log('menu item');
-    console.log(this.menuItem);
-  }
+  ngOnInit() {}
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;

@@ -23,7 +23,8 @@ export const navMenu = [
         path: '/projects'
       },
       {
-        title: 'New Project'
+        title: 'New Project',
+        path: '/projects/new'
       }
     ]
   },

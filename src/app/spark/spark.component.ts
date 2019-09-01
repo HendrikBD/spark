@@ -9,8 +9,6 @@ export class SparkComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log('spark');
-  }
+  ngOnInit() {}
 
 }

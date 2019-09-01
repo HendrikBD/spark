@@ -17,6 +17,7 @@ spk-layout {
 
   spk-sidebar {
     grid-area: sidebar;
+    z-index: 2;
   }
 
   .spk-pages {

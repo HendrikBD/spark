@@ -3,10 +3,11 @@
   width: 100%;
   background: white;
   position: relative;
+  border-right: 1px solid #d4d5d6;
 
   #sidebar {
     overflow: hidden;
-    margin: 0 25px;
+    margin: 0 40px;
     padding-top: 30px;
   }
 
@@ -19,6 +20,6 @@
     background: white;
     padding: 8px 9px 8px 7px;
     border-radius: 0px 5px 5px 0px;
-    border-left: 1px solid #efefef;
+    border: 1px solid #d4d5d6;
   }
 }

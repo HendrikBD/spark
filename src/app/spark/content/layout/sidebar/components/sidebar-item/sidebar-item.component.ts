@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router, Event, NavigationEnd } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'spk-sidebar-item',
@@ -9,16 +10,23 @@ import { Router } from '@angular/router';
 export class SidebarItemComponent implements OnInit {
 
   @Input() menuItem: any;
-  menuOpen = false;
+  @Output() selectedItem = new EventEmitter();
+
+  menuOpen = new BehaviorSubject(false);
+
 
   constructor(
     private router: Router
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.hasSelected(this.menuItem)) {
+      this.menuOpen.next(true);
+    }
+  }
 
   toggleMenu() {
-    this.menuOpen = !this.menuOpen;
+    this.menuOpen.next(!this.menuOpen.value);
   }
 
   onItemClick(event) {
@@ -28,5 +36,20 @@ export class SidebarItemComponent implements OnInit {
       else this.router.navigateByUrl(this.menuItem.path);
     }
   }
+
+  // Checks current and child items to see if menu should be open.
+  hasSelected(menuItem) {
+    if (
+      menuItem.path === this.router.url ||
+      menuItem.submenu && menuItem.submenu.reduce((acc, subItem) => {
+        return acc || this.hasSelected(subItem);
+      }, false)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 
 }

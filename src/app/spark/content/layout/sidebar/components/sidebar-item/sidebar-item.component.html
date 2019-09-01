@@ -7,7 +7,7 @@
   </div>
 
   <div class="submenu_container" *ngIf="menuItem.submenu">
-    <div class="submenu" *ngIf="menuOpen">
+    <div class="submenu" *ngIf="menuOpen.value">
       <spk-sidebar-item [menuItem]="subMenuItem" *ngFor="let subMenuItem of menuItem.submenu">
       </spk-sidebar-item>
     </div>

@@ -2,6 +2,9 @@
   .title {
     display: flex;
     cursor: pointer;
+    width: fit-content;
+    padding-right: 15px;
+
     .icon {
       width: 24px;
       padding-right: 10px;

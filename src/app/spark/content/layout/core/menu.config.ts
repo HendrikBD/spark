@@ -1,6 +1,7 @@
 export const navMenu = [
   {
     title: 'Test',
+    icon: 'fa fa-clipboard',
     submenu: [
       {
         title: 'Category 1',
@@ -10,6 +11,19 @@ export const navMenu = [
             path: '/kanban'
           }
         ]
+      }
+    ]
+  },
+  {
+    title: 'Projects',
+    icon: 'fa fa-clipboard',
+    submenu: [
+      {
+        title: 'All Projects',
+        path: '/projects'
+      },
+      {
+        title: 'New Project'
       }
     ]
   },

@@ -1,5 +1,10 @@
 <div class="menuItem">
-  <div class="title" (click)="onItemClick()">{{ menuItem.title }}</div>
+  <div class="title" (click)="onItemClick()">
+    <div class="icon">
+      <i class="{{menuItem.icon}}"></i>
+    </div>
+    {{ menuItem.title }}
+  </div>
 
   <div class="submenu_container" *ngIf="menuItem.submenu">
     <div class="submenu" *ngIf="menuOpen">

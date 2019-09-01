@@ -1,6 +1,11 @@
 .menuItem {
   .title {
+    display: flex;
     cursor: pointer;
+    .icon {
+      width: 24px;
+      padding-right: 10px;
+    }
   }
   .submenu_container {
     margin-left: 20px;

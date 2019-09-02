@@ -1,0 +1,38 @@
+.sparkPortlet {
+  padding: 30px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+
+  .portlet_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: #93B7BE;
+    border: 0.5px solid #bdbdbd;
+    border-radius: 5px 5px 0 0;
+
+    .portlet_title {
+      display: flex;
+      align-items: center;
+      color: #343434;
+
+      .text {
+        font-size: 18px;
+        font-weight: 600;
+        margin-left: 8px;
+      }
+      i { color: #343434; }
+    }
+
+  }
+
+  .portlet_body {
+    border-left: 0.5px solid #bdbdbd;
+    border-right: 0.5px solid #bdbdbd;
+    border-bottom: 0.5px solid #bdbdbd;
+    border-radius: 0 0 1px 1px;
+    padding: 16px 24px;
+  }
+
+}

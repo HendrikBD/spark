@@ -11,6 +11,11 @@ import gql from 'graphql-tag';
 })
 export class AllProjectsComponent implements OnInit {
 
+  portlet = {
+    name: 'All Projects',
+    icon: 'fa fa-cog'
+  };
+
   projects = new BehaviorSubject(null);
 
   subscriptions: {

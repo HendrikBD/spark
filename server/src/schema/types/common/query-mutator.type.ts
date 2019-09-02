@@ -1,5 +1,5 @@
 export class QueryMutator {
-  filters: (QueryMutatorFilter | QueryMutatorRawFilter)[][];
+  filters?: (QueryMutatorFilter | QueryMutatorRawFilter)[][];
 }
 
 export class QueryMutatorFilter {

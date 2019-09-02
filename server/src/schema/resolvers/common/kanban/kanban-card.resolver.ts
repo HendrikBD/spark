@@ -1,10 +1,10 @@
 import { ObjectType, Query, Mutation, Arg, Int, Resolver } from 'type-graphql';
 
-import PaginatedResponse from '../../types/common/paginated-response.type';
-import { KanbanCard, KanbanCardInputBody } from '../../types/kanban/kanban-card.type';
-import createSampleKanbanCards from '../../samples/kanban/kanban-card.samples';
+import PaginatedResponse from '../../../types/common/paginated-response.type';
+import { KanbanCard, KanbanCardInputBody } from '../../../types/common/kanban/kanban-card.type';
+import createSampleKanbanCards from '../../../samples/kanban/kanban-card.samples';
 
-import KanbanCardService from '../../../services/pg/kanban/kanban-card.service';
+import KanbanCardService from '../../../../services/pg/kanban/kanban-card.service';
 
 @ObjectType()
 class KanbanCardResponse extends PaginatedResponse(KanbanCard) {}

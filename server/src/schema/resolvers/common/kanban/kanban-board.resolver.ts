@@ -1,11 +1,11 @@
 import { ObjectType, Query, Mutation, Arg, Int, Resolver, Ctx } from 'type-graphql';
 
-import PaginatedResponse from '../../types/common/paginated-response.type';
+import PaginatedResponse from '../../../types/common/paginated-response.type';
 
-import { QueryMutator } from '../../types/common/query-mutator.type';
-import { Context } from '../../types/common/context.type';
-import { KanbanBoard, KanbanBoardInputBody } from '../../types/kanban/kanban-board.type';
-import KanbanBoardService from '../../../services/pg/kanban/kanban-board.service';
+import { QueryMutator } from '../../../types/common/query-mutator.type';
+import { Context } from '../../../types/common/context.type';
+import { KanbanBoard, KanbanBoardInputBody } from '../../../types/common/kanban/kanban-board.type';
+import KanbanBoardService from '../../../../services/pg/kanban/kanban-board.service';
 
 @ObjectType()
 class KanbanBoardResponse extends PaginatedResponse(KanbanBoard) {}

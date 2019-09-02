@@ -63,6 +63,23 @@ type Mutation {
   addKanban(kanbanInputBody: KanbanInputBody!): Kanban!
   addKanbanBoard(kanbanBoardInputBody: KanbanBoardInputBody!): KanbanBoard!
   addKanbanCard(kanbanCardInputBody: KanbanCardInputBody!): KanbanCard!
+  addProject(projectInputBody: ProjectInputBody!): Project!
+}
+
+type Project {
+  id: Float!
+}
+
+"""New Project"""
+input ProjectInputBody {
+  name: String!
+  addedBy: Float!
+}
+
+type ProjectResponse {
+  items: [Project!]!
+  total: Int!
+  hasMore: Boolean!
 }
 
 type Query {
@@ -70,4 +87,5 @@ type Query {
   kanban(id: Float!): Kanban!
   kanbanBoards(first: Int = 10): KanbanBoardResponse!
   kanbanCards(first: Int = 10): KanbanCardResponse!
+  projects(first: Int = 10): ProjectResponse!
 }

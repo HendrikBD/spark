@@ -12,7 +12,7 @@ import jwt from 'express-jwt';
 import ErrorService from './services/error.service';
 import AuthService from './services/auth.service';
 import { authCheck } from './services/auth.service';
-import KanbanResolvers from './schema/resolvers/kanban';
+import Resolvers from './schema/resolvers';
 
 dotenv.config();
 const errorService = new ErrorService();
@@ -25,7 +25,7 @@ Container.set('app', app);
 async function bootstrap() {
   const gqlPath = '/graphql';
   const schema = await buildSchema({
-    resolvers: [KanbanResolvers as any],
+    resolvers: [Resolvers as any],
     emitSchemaFile: path.resolve(__dirname, 'schema.gql'),
     validate: false,
     authChecker: authCheck,

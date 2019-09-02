@@ -23,6 +23,8 @@ export default class PgService {
   }
 
   mutateQuery(query, queryMutator: QueryMutator) {
+    console.log('mutating query');
+    if (!queryMutator.filters) queryMutator.filters = [];
     return query.where(this.whereBuilder(queryMutator));
   }
 

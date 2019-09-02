@@ -1,12 +1,12 @@
 import { ObjectType, Query, Mutation, Arg, Ctx, Int, Resolver } from 'type-graphql';
 
-import PaginatedResponse from '../../types/common/paginated-response.type';
-import { Kanban, KanbanInputBody } from '../../types/kanban/kanban.type';
-import { Context } from '../../types/common/context.type';
-import { QueryMutator } from '../../types/common/query-mutator.type';
+import PaginatedResponse from '../../../types/common/paginated-response.type';
+import { Kanban, KanbanInputBody } from '../../../types/common/kanban/kanban.type';
+import { Context } from '../../../types/common/context.type';
+import { QueryMutator } from '../../../types/common/query-mutator.type';
 
-import createSampleKanbans from '../../samples/kanban/kanban.samples';
-import KanbanService from '../../../services/pg/kanban/kanban.service';
+import createSampleKanbans from '../../../samples/kanban/kanban.samples';
+import KanbanService from '../../../../services/pg/kanban/kanban.service';
 
 @ObjectType()
 class KanbansResponse extends PaginatedResponse(Kanban) {
@@ -37,17 +37,8 @@ export default class KanbanResolver {
           raw: `kanbans_authorized_users_view.authorized_users && '{${ctx.user.id}}'::Int[]`
         }],
 
-        ...(id ? [[{
-          column: 'kanbans.id',
-          op: '=',
-          value: id
-        }]] : []),
-
-        ...(root ? [[{
-          column: 'kanbans_root_view.is_root',
-          op: '=',
-          value: true
-        }]] : [])
+        ...(id ? [[{ column: 'kanbans.id', op: '=', value: id }]] : []),
+        ...(root ? [[{ column: 'kanbans_root_view.is_root', op: '=', value: true }]] : [])
 
       ]
     };

@@ -2,7 +2,7 @@ import { ObjectType, InputType, Field, Int } from 'type-graphql';
 import { MaxLength } from 'class-validator';
 
 import { KanbanBoard } from './kanban-board.type';
-import { UserSimple } from '../management/user.type';
+import { UserSimple } from '../../management/user.type';
 
 @ObjectType()
 export class Kanban {

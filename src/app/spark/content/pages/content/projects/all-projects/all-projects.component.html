@@ -1,35 +1,3 @@
-<!-- <spk&#45;portlet -->
-<!--   [portletName]="portlet.name" -->
-<!--   [portletIcon]="portlet.icon"> -->
-<!--  -->
-<!--   <div class="mat&#45;elevation&#45;z2"> -->
-<!--     <mat&#45;table class="projects&#45;table" [dataSource]="table.dataSource" -->
-<!--       matSort matSortDisableClear> -->
-<!--  -->
-<!--       <ng&#45;container matColumnDef="name"> -->
-<!--         <div class="header_container" *matHeaderCellDef mat&#45;sort&#45;header>#</div> -->
-<!--         <div class="cell_container" *matCellDef="let element">{{element.name}}</div> -->
-<!--       </ng&#45;container> -->
-<!--  -->
-<!--       <ng&#45;container matColumnDef="description"> -->
-<!--         <div class="header_container" *matHeaderCellDef mat&#45;sort&#45;header>Description</div> -->
-<!--         <div class="cell_container description&#45;cell" *matCellDef="let element"> -->
-<!--           Testing a longer description -->
-<!--         </div> -->
-<!--       </ng&#45;container> -->
-<!--  -->
-<!--  -->
-<!--       <mat&#45;header&#45;row *matHeaderRowDef="table.displayedColumns"></mat&#45;header&#45;row> -->
-<!--  -->
-<!--       <mat&#45;row *matRowDef="let row; columns: table.displayedColumns"></mat&#45;row> -->
-<!--  -->
-<!--     </mat&#45;table> -->
-<!--  -->
-<!--     <mat&#45;paginator [length]="17" [pageSize]="5" [pageSizeOptions]="[3, 5, 10]"></mat&#45;paginator> -->
-<!--   </div> -->
-<!--  -->
-<!-- </spk&#45;portlet> -->
-
 <spk-datatable
   [portlet]="portlet"
   [displayedColumns]="table.displayedColumns"

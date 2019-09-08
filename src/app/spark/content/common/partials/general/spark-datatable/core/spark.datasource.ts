@@ -22,7 +22,8 @@ export class SparkDataSource implements DataSource<any> {
   dataKey;
 
   get count() {
-    return this.dataArchive.value.length;
+    return 1;
+    // return this.dataArchive.value.length;
   }
   num = 0;
   init = true;
@@ -38,6 +39,10 @@ export class SparkDataSource implements DataSource<any> {
     this.loadingSubject.complete();
   }
 
+  startPagination() {
+    this.resetPagination();
+  }
+
   resetPagination() {
     this.sourcePagination.next(
       Object.assign(this.sourcePagination.value, { page: 0 })
@@ -45,10 +50,6 @@ export class SparkDataSource implements DataSource<any> {
     this.dataArchive.next([]);
     this.dataSubject.next([]);
     this.checkNextSourcePage();
-  }
-
-  startPagination() {
-    this.resetPagination();
   }
 
   getNextSourcePage() {
@@ -62,47 +63,7 @@ export class SparkDataSource implements DataSource<any> {
       .subscribe(res => {
 
         const dataKey = this.dataKey || Object.keys(res.data)[0];
-        this.dataArchive.next(
-          // this.dataArchive.value.concat(res.data[dataKey].data)
-          [
-            {
-              name: 'Spark1',
-              description: 'athing'
-            },
-            {
-              name: 'Spark2',
-              description: 'athing'
-            },
-            {
-              name: 'Spark3',
-              description: 'athing'
-            },
-            {
-              name: 'Spark4',
-              description: 'athing'
-            },
-            {
-              name: 'Spark5',
-              description: 'athing'
-            },
-            {
-              name: 'Spark6',
-              description: 'athing'
-            },
-            {
-              name: 'Spark7',
-              description: 'athing'
-            },
-            {
-              name: 'Spark8',
-              description: 'athing'
-            },
-            {
-              name: 'Spark9',
-              description: 'athing'
-            }
-          ]
-        );
+        this.dataArchive.next(this.dataArchive.value.concat(res.data[dataKey].data));
 
         this.updateDataSubject();
         this.loadingSubject.next(false);
@@ -113,19 +74,10 @@ export class SparkDataSource implements DataSource<any> {
       });
   }
 
-  // Will update the output data subject if required
-  //  - if all data out of range
-  //    - set loading screen/no data
-  //  - check if 1st dataSub obj = expected from archive
-  //    - if so check dataSub length, see if full page
-  //    - if not full page, check if can get fuller page
-  //      - if so, update
 
   updateDataSubject() {
     const startInd = this.matPagination.value.pageIndex * this.matPagination.value.pageSize;
     const endInd = (this.matPagination.value.pageIndex + 1) * this.matPagination.value.pageSize - 1;
-    console.log(startInd);
-    console.log(endInd);
 
     if (startInd > this.dataArchive.value.length - 1) this.dataSubject.next([]);
     else if (
@@ -135,19 +87,9 @@ export class SparkDataSource implements DataSource<any> {
       this.dataSubject.next(this.dataArchive.value.slice(startInd, endInd + 1));
     }
 
-    // const archiveInd = this.matPagination.value.pageIndex * this.matPagination.value.pageSize - 1;
-    // const finalSubjectDatum = this.dataSubject.value[this.matPagination.value.pageSize - 1];
-    // const finalArchiveDatum = this.dataSubject.value[archiveInd];
-    // if (!finalSubjectDatum || finalSubjectDatum !== finalArchiveDatum) {
-    //   const startInd = (this.matPagination.value.pageIndex - 1) * this.matPagination.value.pageSize;
-    //   const endInd = (this.matPagination.value.pageIndex) * this.matPagination.value.pageSize;
-    //
-    //   this.dataSubject.next(this.dataArchive.value.slice(startInd, endInd));
-    // }
   }
 
   updateMatPagination(matPagination) {
-    console.log('updating')
     this.matPagination.next(matPagination);
     this.updateDataSubject();
   }
@@ -165,16 +107,12 @@ export class SparkDataSource implements DataSource<any> {
   }
 
   checkNextSourcePage() {
-    console.log('checking next page');
-    console.log(this.loadingSubject.value)
-    console.log(this.dataArchive.value.length)
     const minArchived = this.matPagination.value.pageIndex * this.matPagination.value.pageSize + 50;
     if (
       !this.loadingSubject.value &&
-      this.dataArchive.value.length < minArchived &&
-      (this.dataArchive.value.length < this.count || this.init)
+      (this.dataArchive.value.length < this.count || this.init) &&
+      this.dataArchive.value.length < minArchived
     ) {
-      console.log('if');
       this.getNextSourcePage();
     }
   }

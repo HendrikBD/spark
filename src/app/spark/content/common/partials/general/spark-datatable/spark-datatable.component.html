@@ -1,7 +1,15 @@
-<spk-portlet
-  [portletName]="portlet?.name"
-  [portletIcon]="portlet?.icon">
+<ng-container *ngIf="!!portlet; else datatable">
+  <spk-portlet
+    [portletName]="portlet?.name"
+    [portletIcon]="portlet?.icon">
 
+    <ng-container *ngTemplateOutlet="datatable">
+    </ng-container>
+
+  </spk-portlet>
+</ng-container>
+
+<ng-template #datatable>
   <div class="mat-elevation-z2">
     <mat-table class="projects-table" [dataSource]="dataSource"
       matSort matSortDisableClear>
@@ -26,5 +34,4 @@
 
     <mat-paginator [length]="dataSource.count" [pageSize]="5" [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
   </div>
-
-</spk-portlet>
+</ng-template>

@@ -1,0 +1,23 @@
+mat-table {
+  background: #efefef;
+
+  mat-header-row {
+    display: flex;
+    .header_container {
+      flex: 1;
+      padding: 0 10px 0 30px;
+    }
+  }
+
+  mat-row {
+    display: flex;
+    .cell_container {
+      flex: 1;
+      padding: 0 10px 0 30px;
+    }
+  }
+}
+
+mat-paginator {
+  background: #efefef;
+}

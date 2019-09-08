@@ -3,7 +3,7 @@ import { Apollo } from 'apollo-angular';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import gql from 'graphql-tag';
 
-import { SparkDataSource } from '../../../../common/partials/general/spark-datatable/core/spark-data-source';
+import { SparkDataSource } from '../../../../common/partials/general/spark-datatable/core/spark.datasource';
 import { ProjectsDataSource } from '../core/projects.datasource';
 
 @Component({

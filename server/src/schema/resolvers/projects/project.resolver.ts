@@ -29,7 +29,7 @@ export default class ProjectResolver {
     const total = projects.length;
 
     return {
-      items: projects,
+      data: projects,
       hasMore: total > first,
       total
     };

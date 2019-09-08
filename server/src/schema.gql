@@ -23,7 +23,7 @@ input KanbanBoardInputBody {
 }
 
 type KanbanBoardResponse {
-  items: [KanbanBoard!]!
+  data: [KanbanBoard!]!
   total: Int!
   hasMore: Boolean!
 }
@@ -42,7 +42,7 @@ input KanbanCardInputBody {
 }
 
 type KanbanCardResponse {
-  items: [KanbanCard!]!
+  data: [KanbanCard!]!
   total: Int!
   hasMore: Boolean!
 }
@@ -54,7 +54,7 @@ input KanbanInputBody {
 }
 
 type KanbansResponse {
-  items: [Kanban!]!
+  data: [Kanban!]!
   total: Int!
   hasMore: Boolean!
 }
@@ -68,6 +68,7 @@ type Mutation {
 
 type Project {
   id: Float!
+  name: String!
 }
 
 """New Project"""
@@ -77,7 +78,7 @@ input ProjectInputBody {
 }
 
 type ProjectResponse {
-  items: [Project!]!
+  data: [Project!]!
   total: Int!
   hasMore: Boolean!
 }

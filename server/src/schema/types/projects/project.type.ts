@@ -9,8 +9,11 @@ export class Project {
   @Field()
   id: number;
 
-  // @Field()
-  // addedBy: UserSimple;
+  @Field()
+  name: string;
+
+  // @Field(type => UserSimple, { nullable: true })
+  // addedBy?: UserSimple;
 
   authorizedUsers?: number[];
 

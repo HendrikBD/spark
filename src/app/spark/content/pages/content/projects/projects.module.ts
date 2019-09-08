@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
+import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from '@angular/material';
+
 import { PartialsModule } from '../../../common/partials/partials.module';
 
 import { AllProjectsComponent } from './all-projects/all-projects.component';
@@ -19,11 +21,19 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AllProjectsComponent, NewProjectComponent],
+  declarations: [
+    AllProjectsComponent,
+    NewProjectComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    PartialsModule
+    PartialsModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatTableModule
   ]
 })
 export class ProjectsModule { }

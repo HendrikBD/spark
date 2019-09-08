@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { BehaviorSubject, Subscription } from 'rxjs';
-
 import gql from 'graphql-tag';
+
+import { SparkDataSource } from '../../../../common/partials/general/spark-datatable/core/spark-data-source';
+import { ProjectsDataSource } from '../core/projects.datasource';
 
 @Component({
   selector: 'spk-all-projects',
@@ -16,6 +18,11 @@ export class AllProjectsComponent implements OnInit {
     icon: 'fa fa-cog'
   };
 
+  table = {
+    displayedColumns: ['name', 'description'],
+    dataSource: new ProjectsDataSource(this.apollo)
+  };
+
   projects = new BehaviorSubject(null);
 
   subscriptions: {
@@ -27,8 +34,7 @@ export class AllProjectsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getProjects();
-    this.subscriptions.projectsUpdate = this.projects.subscribe(this.updateDataSource.bind(this));
+    this.table.dataSource.startPagination();
   }
 
   updateDataSource() {

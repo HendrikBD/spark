@@ -19,7 +19,6 @@ export class AllProjectsComponent implements OnInit {
   };
 
   table = {
-    displayedColumns: ['name', 'description'],
     dataSource: new ProjectsDataSource(this.apollo),
     template: {
       displayedColumns: ['name', 'description'],

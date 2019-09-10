@@ -12,11 +12,13 @@ import {
 import { SparkPortletComponent } from './general/spark-portlet/spark-portlet.component';
 import { SparkDatatableComponent } from './general/spark-datatable/spark-datatable.component';
 import { SparkPaginatorIntl } from './general/spark-datatable/core/spark.paginator';
+import { DynamicComponentComponent } from './general/dynamic-component/dynamic-component.component';
 
 @NgModule({
   declarations: [
     SparkPortletComponent,
-    SparkDatatableComponent
+    SparkDatatableComponent,
+    DynamicComponentComponent
   ],
   imports: [
     CommonModule,

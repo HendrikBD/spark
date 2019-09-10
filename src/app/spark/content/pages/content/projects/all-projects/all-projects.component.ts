@@ -20,7 +20,42 @@ export class AllProjectsComponent implements OnInit {
 
   table = {
     displayedColumns: ['name', 'description'],
-    dataSource: new ProjectsDataSource(this.apollo)
+    dataSource: new ProjectsDataSource(this.apollo),
+    template: {
+      displayedColumns: ['name', 'description'],
+      columns: [
+        {
+          name: 'name',
+          header: {
+            template: `
+            <div>
+            Name
+            </div>`
+          },
+          row: {
+            template: `
+            <div>
+              {{ ctx.name }}
+            </div>`
+          },
+        },
+        {
+          name: 'description',
+          header: {
+            template: `
+            <div>
+              Description
+            </div>`
+          },
+          row: {
+            template: `
+            <div>
+              {{ ctx.description }}
+            </div>`
+          },
+        }
+      ]
+    }
   };
 
   projects = new BehaviorSubject(null);

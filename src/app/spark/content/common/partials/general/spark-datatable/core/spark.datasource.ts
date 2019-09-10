@@ -49,7 +49,7 @@ export class SparkDataSource implements DataSource<any> {
     );
     this.dataArchive.next([]);
     this.dataSubject.next([]);
-    this.checkNextSourcePage();
+    this.checkForNextSourcePage();
   }
 
   getNextSourcePage() {
@@ -70,7 +70,7 @@ export class SparkDataSource implements DataSource<any> {
         this.init = false;
 
         this.num++;
-        if (this.num < 10) this.checkNextSourcePage();
+        if (this.num < 10) this.checkForNextSourcePage();
       });
   }
 
@@ -86,7 +86,6 @@ export class SparkDataSource implements DataSource<any> {
     ) {
       this.dataSubject.next(this.dataArchive.value.slice(startInd, endInd + 1));
     }
-
   }
 
   updateMatPagination(matPagination) {
@@ -106,7 +105,7 @@ export class SparkDataSource implements DataSource<any> {
     return of([]);
   }
 
-  checkNextSourcePage() {
+  checkForNextSourcePage() {
     const minArchived = this.matPagination.value.pageIndex * this.matPagination.value.pageSize + 50;
     if (
       !this.loadingSubject.value &&

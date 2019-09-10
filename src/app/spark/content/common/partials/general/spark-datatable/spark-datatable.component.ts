@@ -1,4 +1,19 @@
-import { Component, OnInit, OnDestroy, Input, ViewChild, ChangeDetectorRef } from '@angular/core';
+import {
+  NgModule,
+  Component,
+  Injector,
+  OnInit,
+  AfterViewInit,
+  OnDestroy,
+  Input,
+  ViewChild,
+  ChangeDetectorRef,
+  Compiler,
+  ComponentRef,
+  NgModuleRef,
+  ViewContainerRef
+} from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { MatPaginator } from '@angular/material';
 import { Subscription } from 'rxjs';
 
@@ -7,7 +22,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './spark-datatable.component.html',
   styleUrls: ['./spark-datatable.component.scss']
 })
-export class SparkDatatableComponent implements OnInit, OnDestroy {
+export class SparkDatatableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input() portlet: {
     name: string;
@@ -15,22 +30,26 @@ export class SparkDatatableComponent implements OnInit, OnDestroy {
   };
   @Input() dataSource;
   @Input() displayedColumns;
+  @Input() tableTemplate: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   subscriptions: {
     matPagination?: Subscription;
-  } = {}
+  } = {};
 
   constructor(
     private cdRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
+    this.dataSource.startPagination();
+  }
+
+  ngAfterViewInit() {
     this.subscriptions = {
       matPagination: this.paginator.page.subscribe(this.onPageUpdate.bind(this))
     };
-    this.dataSource.startPagination();
   }
 
   ngOnDestroy() {

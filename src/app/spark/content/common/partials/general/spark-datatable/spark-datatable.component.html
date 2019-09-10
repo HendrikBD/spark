@@ -14,16 +14,24 @@
     <mat-table class="projects-table" [dataSource]="dataSource"
       matSort matSortDisableClear>
 
-      <ng-container matColumnDef="name">
-        <div class="header_container" *matHeaderCellDef mat-sort-header>#</div>
-        <div class="cell_container" *matCellDef="let element">{{element.name}}</div>
-      </ng-container>
+      <ng-container *ngFor="let column of tableTemplate.columns">
+        <ng-container [matColumnDef]="column.name">
+          <div class="header_container" *matHeaderCellDef mat-sort-header>
+            <spk-dynamic-component
+              [template]="column?.header.template"
+              [ctx]="element"
+              *ngIf="column.header.template">
+            </spk-dynamic-component>
+          </div>
+          <div class="cell_container" *matCellDef="let element">
+            <spk-dynamic-component
+              [template]="column?.row.template"
+              [ctx]="element"
+              *ngIf="column.row.template">
+            </spk-dynamic-component>
+          </div>
+        </ng-container>
 
-      <ng-container matColumnDef="description">
-        <div class="header_container" *matHeaderCellDef mat-sort-header>Description</div>
-        <div class="cell_container description-cell" *matCellDef="let element">
-          Testing a longer description
-        </div>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

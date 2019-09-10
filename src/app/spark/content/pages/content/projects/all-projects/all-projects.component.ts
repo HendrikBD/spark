@@ -27,31 +27,19 @@ export class AllProjectsComponent implements OnInit {
         {
           name: 'name',
           header: {
-            template: `
-            <div>
-            Name
-            </div>`
+            template: `<div>Name</div>`
           },
           row: {
-            template: `
-            <div>
-              {{ ctx.name }}
-            </div>`
+            template: `<div>{{ ctx.name }}</div>`
           },
         },
         {
           name: 'description',
           header: {
-            template: `
-            <div>
-              Description
-            </div>`
+            template: `<div>Description</div>`
           },
           row: {
-            template: `
-            <div>
-              {{ ctx.description }}
-            </div>`
+            template: `<div>{{ ctx.description }}</div>`
           },
         }
       ]

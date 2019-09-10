@@ -1,17 +1,12 @@
 import {
   NgModule,
   Component,
-  Injector,
   OnInit,
   AfterViewInit,
   OnDestroy,
   Input,
   ViewChild,
-  ChangeDetectorRef,
-  Compiler,
-  ComponentRef,
-  NgModuleRef,
-  ViewContainerRef
+  ChangeDetectorRef
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatPaginator } from '@angular/material';

@@ -1,7 +1,7 @@
 .logo_container {
   height: 100%;
 
-  .loading {
+  &.loading {
 
     g mask path.ridge {
       transform-origin: 50% 50%;

@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { Observable, BehaviorSubject, pipe, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -5,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
+@Injectable()
 export class SparkDataSource implements DataSource<any> {
 
   private dataSubject = new BehaviorSubject<any[]>([]);

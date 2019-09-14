@@ -1,18 +1,7 @@
 export const navMenu = [
   {
     title: 'Test',
-    icon: 'fa fa-clipboard',
-    submenu: [
-      {
-        title: 'Category 1',
-        submenu: [
-          {
-            title: 'Kanban',
-            path: '/kanban'
-          }
-        ]
-      }
-    ]
+    path: '/projects/dashboard/2'
   },
   {
     title: 'Projects',

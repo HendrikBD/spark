@@ -6,6 +6,8 @@ import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortMo
 
 import { PartialsModule } from '../../../common/partials/partials.module';
 
+import { ProjectsDataSource } from './core/projects.datasource';
+
 import { AllProjectsComponent } from './all-projects/all-projects.component';
 import { NewProjectComponent } from './new-project/new-project.component';
 
@@ -17,6 +19,10 @@ const routes: Routes = [
   {
     path: 'new',
     component: NewProjectComponent
+  },
+  {
+    path: 'dashboard',
+    loadChildren: './project-dashboard/project-dashboard.module#ProjectDashboardModule'
   }
 ];
 
@@ -28,12 +34,17 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    // Local
     PartialsModule,
+    // Maerial
     MatInputModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSortModule,
     MatTableModule
+  ],
+  providers: [
+    ProjectsDataSource
   ]
 })
 export class ProjectsModule { }

@@ -9,16 +9,16 @@ import { Entity } from '../core/entity.model';
 export class DynamicEntityComponent implements OnInit {
 
   @Input() entityStatic;
-  @Input() entityForm;
+  @Input() entityControl;
 
   get entity(): Entity {
-    return (this.entityForm) ? this.entityForm.getRawValue() : (this.entityStatic || null);
+    return (this.entityControl) ? this.entityControl.getRawValue() : (this.entityStatic || null);
   }
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.entityForm);
+    console.log(this.entityControl);
     console.log(this.entityStatic);
   }
 

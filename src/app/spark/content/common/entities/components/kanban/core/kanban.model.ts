@@ -1,10 +1,10 @@
-import { EntitySimple } from '../../../core/entity.model';
+import { Entity } from '../../../core/entity.model';
 
-export class Kanban extends EntitySimple {
+export class Kanban extends Entity {
   boards: KanbanBoard[];
 }
 
-export class KanbanBoard extends EntitySimple {
+export class KanbanBoard extends Entity {
   name: string;
-  entities: EntitySimple[];
+  entities: Entity[];
 }

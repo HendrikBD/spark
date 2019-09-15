@@ -7,15 +7,17 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class KanbanComponent implements OnInit {
 
-  @Input() kanbanForm;
+  @Input() kanbanControl;
 
   get kanban() {
-    return this.kanbanForm ? this.kanbanForm.getRawValue() : null;
+    return this.kanbanControl ? this.kanbanControl.getRawValue() : null;
   }
 
   constructor() { }
 
   ngOnInit() {
+    console.log('this.kanbanControl');
+    console.log(this.kanbanControl);
   }
 
 }

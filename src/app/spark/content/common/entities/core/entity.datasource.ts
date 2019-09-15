@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 import { SparkDataSource } from '../../partials/general/spark-datatable/core/spark.datasource';
 import { entitySample } from './entity.sample';
 
-import { Entity, EntitySimple } from '../core/entity.model';
+import { Entity } from '../core/entity.model';
 
 @Injectable()
 export class EntitiesDataSource extends SparkDataSource {
@@ -47,7 +47,7 @@ export class EntitiesDataSource extends SparkDataSource {
 
   }
 
-  getTestEntity(): Observable<EntitySimple> {
+  getTestEntity(): Observable<Entity> {
     return of(entitySample);
   }
 

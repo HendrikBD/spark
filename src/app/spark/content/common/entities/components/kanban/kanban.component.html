@@ -1,3 +1,8 @@
-<p>
-  kanban works!
-</p>
+<div class="kanban">
+  <div class="header"></div>
+  <div class="boards_container">
+    <div class="board" *ngFor="let boardControl of kanbanControl?.get('boards').controls">
+      board
+    </div>
+  </div>
+</div>

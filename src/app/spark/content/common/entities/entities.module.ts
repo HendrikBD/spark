@@ -7,7 +7,7 @@ import { EntitiesComponent } from './entities.component';
 import { KanbanComponent } from './components/kanban/kanban.component';
 
 // Services
-import { EntityFormService } from './core/entity-form.service';
+import { EntityControlService } from './core/entity-control.service';
 import { DynamicEntityComponent } from './dynamic-entity/dynamic-entity.component';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { DynamicEntityComponent } from './dynamic-entity/dynamic-entity.componen
     EntitiesComponent
   ],
   providers: [
-    EntityFormService
+    EntityControlService
   ]
 })
 export class EntitiesModule { }

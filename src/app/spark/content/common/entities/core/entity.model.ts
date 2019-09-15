@@ -2,10 +2,14 @@ import { Observer } from 'rxjs';
 
 import { Kanban } from '../components/kanban/core/kanban.model';
 
-export class EntitySimple {
+export class Entity {
   id: number;
   name: string;
-  kind: string;
+  kind: {
+    id: number;
+    name: string;
+  };
+  isVisible?: boolean;
 }
 
-export type Entity = Kanban | EntitySimple;
+// export type Entity = Kanban | EntitySimple;

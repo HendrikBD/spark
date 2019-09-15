@@ -1,12 +1,11 @@
 <div class="mat-elevation-z1">
-  <div>
-    <div>things</div>
-    <spk-dynamic-entity [entityForm]="currentEntityForm">
-    </spk-dynamic-entity>
-  </div>
-  <hr />
-  <div>
-    <spk-dynamic-entity [entityStatic]="previouseEntity">
-    </spk-dynamic-entity>
-  </div>
+
+  <spk-dynamic-entity [entityControl]="currentEntityControl">
+  </spk-dynamic-entity>
+
+    <ng-container *ngIf="previousEntity?.isVisible">
+      <spk-dynamic-entity [entityStatic]="previouseEntity"></spk-dynamic-entity>
+    </ng-container>
+
+
 </div>

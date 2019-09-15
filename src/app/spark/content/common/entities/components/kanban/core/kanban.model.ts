@@ -1,7 +1,7 @@
 import { EntitySimple } from '../../../core/entity.model';
 
 export class Kanban extends EntitySimple {
-  borads: KanbanBoard[];
+  boards: KanbanBoard[];
 }
 
 export class KanbanBoard extends EntitySimple {

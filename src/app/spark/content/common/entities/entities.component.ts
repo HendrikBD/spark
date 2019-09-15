@@ -1,19 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { BehaviorSubject, Subscription, Observer, of } from 'rxjs';
+import { FormGroup } from '@angular/forms';
 
 import { EntityFormService } from './core/entity-form.service';
 
-import { Entity, EntitySimple, EntityObserver } from './core/entity.model';
+import { Entity, EntitySimple } from './core/entity.model';
 
 @Component({
   selector: 'spk-entities',
   templateUrl: './entities.component.html',
   styleUrls: ['./entities.component.scss']
 })
-export class EntitiesComponent implements OnInit {
+export class EntitiesComponent implements OnInit, OnChanges {
 
   @Input() rootEntity: Entity;
 
+  currentEntityForm: FormGroup;
   currentEntity: Entity;
   previousEntity: Entity;
   entityObserver: Observer<Entity> = {
@@ -33,9 +35,15 @@ export class EntitiesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    of({ id: 1, name: 'a', kind: '' }).subscribe(this.entityObserver);
-    this.subscriptions = {
-      entityUpdate: this.entityUpdate.subscribe(this.onEntityUpdate.bind(this))
+    // of({{ id: 1, name: 'a', kind: '' }}).subscribe(this.entityObserver);
+    // this.subscriptions = {
+    //   entityUpdate: this.entityUpdate.subscribe(this.onEntityUpdate.bind(this))
+    // }
+  }
+
+  ngOnChanges() {
+    if (!this.currentEntityForm && this.rootEntity) {
+      this.currentEntityForm = this.formService.buildEntityForm(this.rootEntity);
     }
   }
 

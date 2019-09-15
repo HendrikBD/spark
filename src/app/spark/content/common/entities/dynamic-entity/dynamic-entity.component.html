@@ -1,0 +1,11 @@
+<div class="entity_container">
+  <ng-container [ngSwitch]="entity?.kind">
+
+    <ng-container *ngSwitchCase="'kanban'">
+      <spk-kanban
+        [kanbanForm]="entityForm">
+      </spk-kanban>
+    </ng-container>
+
+  </ng-container>
+</div>

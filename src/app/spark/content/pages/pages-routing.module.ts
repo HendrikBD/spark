@@ -12,10 +12,6 @@ const routes: Routes = [
       {
         path: 'projects',
         loadChildren: './content/projects/projects.module#ProjectsModule'
-      },
-      {
-        path: 'kanban',
-        loadChildren: './content/kanban/kanban.module#KanbanModule'
       }
     ]
   }

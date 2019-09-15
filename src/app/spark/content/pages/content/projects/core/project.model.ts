@@ -1,8 +1,7 @@
-export class Project {
+import { EntitySimple } from '../../../../common/entities/core/entity.model';
 
-  constructor(
-    public id: number,
-    public name: string
-  ) {}
-
+export interface Project {
+  id: number;
+  name: string;
+  rootEntity: EntitySimple;
 }

@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { KanbanModule } from '../../../../common/kanban/kanban.module';
+import { PartialsModule } from '../../../../common/partials/partials.module';
+import { EntitiesModule } from '../../../../common/entities/entities.module';
 
 import { ProjectDashboardComponent } from './project-dashboard.component';
-import { DashboardKanbanComponent } from './components/dashboard-kanban/dashboard-kanban.component';
+import { DashboardEntitiesComponent } from './components/dashboard-entities/dashboard-entities.component';
 
 const routes: Routes = [
   {
@@ -19,11 +20,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ProjectDashboardComponent, DashboardKanbanComponent],
+  declarations: [ProjectDashboardComponent, DashboardEntitiesComponent],
   imports: [
     CommonModule,
-    KanbanModule,
-    RouterModule.forChild(routes)
+    PartialsModule,
+    RouterModule.forChild(routes),
+    EntitiesModule
   ]
 })
 export class ProjectDashboardModule { }

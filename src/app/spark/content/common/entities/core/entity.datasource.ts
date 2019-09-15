@@ -4,11 +4,14 @@ import { Observable, of } from 'rxjs';
 import gql from 'graphql-tag';
 
 import { SparkDataSource } from '../../partials/general/spark-datatable/core/spark.datasource';
+import { entitySample } from './entity.sample';
+
+import { Entity, EntitySimple } from '../core/entity.model';
 
 @Injectable()
-export class KanbanDataSource extends SparkDataSource {
+export class EntitiesDataSource extends SparkDataSource {
 
-  dataKey: 'kanbans';
+  dataKey: 'entities';
 
   constructor(
     private apollo: Apollo
@@ -17,8 +20,8 @@ export class KanbanDataSource extends SparkDataSource {
   getData(queryMutator): Observable<any> {
     return this.apollo.watchQuery<any>({
       query: gql`
-        query getKanbans {
-          kanbans {
+        query getEntities {
+          entities {
             data {
               id,
               name
@@ -29,11 +32,23 @@ export class KanbanDataSource extends SparkDataSource {
     }).valueChanges;
   }
 
-  getTestKanban(): Observable<any> {
-    return of({
-      id: 3,
-      name: 'Spark',
-    });
+  testPagination() {
+    console.log('testPagination');
+    const query = gql`
+      query getEntities($id: integer) {
+        entity(id: $id) {
+          data {
+            id,
+            name
+          }
+        }
+      }
+    `;
+
+  }
+
+  getTestEntity(): Observable<EntitySimple> {
+    return of(entitySample);
   }
 
 }

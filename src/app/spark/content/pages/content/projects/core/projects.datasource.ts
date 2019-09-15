@@ -4,6 +4,8 @@ import { Observable, of } from 'rxjs';
 import gql from 'graphql-tag';
 
 import { SparkDataSource } from '../../../../common/partials/general/spark-datatable/core/spark.datasource';
+import { ProjectSample } from './project.sample';
+
 import { Project } from '../core/project.model';
 
 @Injectable()
@@ -46,10 +48,7 @@ export class ProjectsDataSource extends SparkDataSource {
   }
 
   getTestProject(): Observable<Project> {
-    return of({
-      id: 2,
-      name: 'Spark'
-    });
+    return of(ProjectSample);
   }
 
 }

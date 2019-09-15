@@ -9,9 +9,16 @@ import { KanbanComponent } from './components/kanban/kanban.component';
 // Services
 import { EntityControlService } from './core/entity-control.service';
 import { DynamicEntityComponent } from './dynamic-entity/dynamic-entity.component';
+import { KanbanBoardComponent } from './components/kanban/components/kanban-board/kanban-board.component';
 
 @NgModule({
-  declarations: [EntitiesComponent, KanbanComponent, DynamicEntityComponent],
+  declarations: [
+    EntitiesComponent,
+    DynamicEntityComponent,
+    // Kanban
+    KanbanComponent,
+    KanbanBoardComponent
+  ],
   imports: [
     CommonModule
   ],

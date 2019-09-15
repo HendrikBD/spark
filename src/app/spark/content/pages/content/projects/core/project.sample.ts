@@ -9,7 +9,8 @@ export const ProjectSample: Project = {
       name: 'kanban'
     },
     id: 2,
-    name: 'entity',
+    name: 'Spark',
+    description: 'A tool/project to test out a variety of different technologies',
     boards: [
       {
         id: 7,

@@ -12,4 +12,4 @@ export class Entity {
   isVisible?: boolean;
 }
 
-// export type Entity = Kanban | EntitySimple;
+export type AnyEntity = Kanban | Entity;

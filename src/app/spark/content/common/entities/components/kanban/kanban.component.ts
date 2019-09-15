@@ -8,9 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class KanbanComponent implements OnInit {
 
   @Input() kanbanControl;
+  @Input() kanbanStatic;
 
   get kanban() {
-    return this.kanbanControl ? this.kanbanControl.getRawValue() : null;
+    return this.kanbanControl ? this.kanbanControl.getRawValue() : (this.kanbanStatic || null);
   }
 
   constructor() { }

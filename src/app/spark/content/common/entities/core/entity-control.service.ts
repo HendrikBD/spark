@@ -11,31 +11,30 @@ export class EntityControlService {
     private fb: FormBuilder
   ) {}
 
-  buildEntityControl(entity: Entity, depth = 2): FormGroup {
-    console.log('buildEntityControl');
-    console.log(entity);
+  buildEntityControl(entity: Entity, depth = 1): FormGroup {
     switch (entity.kind.name) {
       case 'kanban':
         return this.buildKanbanControl(entity as Kanban, depth);
         break;
       default:
-        console.log('nope');
+        console.error('no matching entity: ' + entity.kind.name);
 
     }
   }
 
-  buildKanbanControl(kanban: Kanban, depth = 0) {
+  buildKanbanControl(kanban: Kanban, depth = 1) {
     return this.fb.group({
       id: [kanban.id],
       kind: [kanban.kind],
       name: [kanban.name],
+      description: [kanban.description],
       boards: kanban.boards instanceof Array
         ? this.fb.array(kanban.boards.map(board => this.buildKanbanBoardControl(board, depth)))
         : this.fb.array([])
     });
   }
 
-  buildKanbanBoardControl(board: KanbanBoard, depth = 0) {
+  buildKanbanBoardControl(board: KanbanBoard, depth = 1) {
     return this.fb.group({
       id: [board.id],
       kind: [board.kind],

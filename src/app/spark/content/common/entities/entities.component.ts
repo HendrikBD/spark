@@ -44,7 +44,6 @@ export class EntitiesComponent implements OnInit, OnChanges {
   ngOnChanges() {
     if (!this.currentEntityControl && this.rootEntity) {
       this.currentEntityControl = this.controlService.buildEntityControl(this.rootEntity);
-      console.log(this.currentEntityControl);
     }
   }
 

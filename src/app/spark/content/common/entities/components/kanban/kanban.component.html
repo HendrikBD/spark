@@ -1,8 +1,22 @@
 <div class="kanban">
-  <div class="header"></div>
+
+  <div class="header">
+    <div class="title">{{kanban.name}}</div>
+    <div class="description">{{kanban.description}}</div>
+  </div>
+
+  <hr class="spacer"/>
+
   <div class="boards_container">
     <div class="board" *ngFor="let boardControl of kanbanControl?.get('boards').controls">
-      board
+      <spk-kanban-board [boardControl]="boardControl"></spk-kanban-board>
+    </div>
+    <div class="board" *ngFor="let boardControl of kanbanControl?.get('boards').controls">
+      <spk-kanban-board [boardControl]="boardControl"></spk-kanban-board>
+    </div>
+    <div class="board" *ngFor="let boardControl of kanbanControl?.get('boards').controls">
+      <spk-kanban-board [boardControl]="boardControl"></spk-kanban-board>
     </div>
   </div>
+
 </div>

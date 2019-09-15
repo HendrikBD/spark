@@ -1,0 +1,12 @@
+<div class="board_container">
+  <div class="board">
+    <div class="header">
+      {{board.name}}
+    </div>
+    <div class="entities">
+      <div class="entity" *ngFor="let entity of board.entities">
+        {{entity.name}}
+      </div>
+    </div>
+  </div>
+<div>

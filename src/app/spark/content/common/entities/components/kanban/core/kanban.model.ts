@@ -7,5 +7,6 @@ export class Kanban extends Entity {
 
 export class KanbanBoard extends Entity {
   name: string;
+  description?: string;
   entities: Entity[];
 }

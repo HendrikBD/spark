@@ -10,6 +10,12 @@ export class Entity {
     name: string;
   };
   isVisible?: boolean;
+  parentEntity?: Entity | EntitySimple;
 }
 
-export type AnyEntity = Kanban | Entity;
+export class EntitySimple {
+  id: number;
+  name?: string;
+}
+
+export type AnyEntity = Kanban | EntitySimple | Entity;

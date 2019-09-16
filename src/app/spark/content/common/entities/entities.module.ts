@@ -9,6 +9,7 @@ import { KanbanComponent } from './components/kanban/kanban.component';
 
 // Services
 import { EntityControlService } from './core/entity-control.service';
+import { EntityService } from './core/entity.service';
 import { DynamicEntityComponent } from './dynamic-entity/dynamic-entity.component';
 import { KanbanBoardComponent } from './components/kanban/components/kanban-board/kanban-board.component';
 
@@ -28,7 +29,8 @@ import { KanbanBoardComponent } from './components/kanban/components/kanban-boar
     EntitiesComponent
   ],
   providers: [
-    EntityControlService
+    EntityControlService,
+    EntityService
   ]
 })
 export class EntitiesModule { }

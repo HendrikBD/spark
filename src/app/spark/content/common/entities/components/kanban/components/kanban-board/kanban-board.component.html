@@ -3,8 +3,8 @@
     <div class="header">
       {{board.name}}
     </div>
-    <div class="entities">
-      <div class="entity" *ngFor="let entity of board.entities" spkDraggable (drag)="onDragEntity($event)" [onDropFcn]="onDropEntity">
+    <div class="entities noselect">
+      <div class="entity kanbanBoard" *ngFor="let entity of board.entities" spkDraggable (drag)="onDragEntity($event)" [onDropFcn]="buildDropFcn(entity)">
 
         <div class="label">{{entity.name}}</div>
         <div class="buttons">

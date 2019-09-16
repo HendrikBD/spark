@@ -1,4 +1,15 @@
-import { Directive, AfterViewInit, OnDestroy,  ElementRef, NgZone, Input, HostListener, Output, EventEmitter } from '@angular/core';
+import {
+  Directive,
+  AfterViewInit,
+  OnDestroy,
+  ElementRef,
+  NgZone,
+  Input,
+  HostListener,
+  HostBinding,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { Observable, Subscription, Subject, fromEvent, pipe, of } from 'rxjs';
 import { map, switchMap, takeUntil, tap, catchError, finalize, takeLast } from 'rxjs/operators';
 
@@ -6,6 +17,9 @@ import { map, switchMap, takeUntil, tap, catchError, finalize, takeLast } from '
   selector: '[spkDraggable]'
 })
 export class DraggableDirective implements AfterViewInit {
+  @HostBinding('style.cursor') get cursor() {
+    return this.dragging ? 'grabbing' : 'grab';
+  }
 
   @Input() onDropFcn;
 
@@ -35,12 +49,20 @@ export class DraggableDirective implements AfterViewInit {
       const mouseup$ = fromEvent(document, 'mouseup').pipe(
         finalize(() => {
           if (this.dragging) {
+            const dropPos = {
+              x: this.start.x + this.delta.x,
+              y: this.start.y + this.delta.y
+            };
+            window.requestAnimationFrame(() => {
+              window.requestAnimationFrame(() => {
+                if (this.onDropFcn) this.onDropFcn(dropPos);
+              });
+            });
             this.delta = { x: 0, y: 0 };
             this.translate();
           }
           this.mousedrag$.unsubscribe();
           delete this.mousedrag$;
-          if (this.onDropFcn) this.onDropFcn();
           this.dragging = false;
         })
       );

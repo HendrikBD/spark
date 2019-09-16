@@ -1,11 +1,24 @@
 <div class="board_container">
-  <div class="board">
+  <div class="board mat-elevation-z1">
     <div class="header">
       {{board.name}}
     </div>
     <div class="entities">
-      <div class="entity" *ngFor="let entity of board.entities">
-        {{entity.name}}
+      <div class="entity" *ngFor="let entity of board.entities" spkDraggable (drag)="onDragEntity($event)" [onDropFcn]="onDropEntity">
+
+        <div class="label">{{entity.name}}</div>
+        <div class="buttons">
+          <div class="button">
+            <i class="fa fa-arrow-circle-left"></i>
+          </div>
+          <div class="button">
+            <i class="fa fa-ellipsis-h"></i>
+          </div>
+          <div class="button">
+            <i class="fa fa-arrow-circle-right"></i>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

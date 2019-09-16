@@ -11,7 +11,7 @@ export class KanbanBoardComponent implements OnInit {
   @Input() boardStatic;
 
   get board() {
-    return this.boardControl ? this.boardControl.getRawValue() : (this.boardStatic || null);
+    return this.boardControl ? this.boardControl.value : (this.boardStatic || null);
   }
 
   constructor() { }
@@ -19,6 +19,14 @@ export class KanbanBoardComponent implements OnInit {
   ngOnInit() {
     console.log('board');
     console.log(this.board);
+  }
+
+  onDragEntity() {
+    console.log('onDragEntity');
+  }
+
+  onDropEntity() {
+    console.log('onDropEntity');
   }
 
 }

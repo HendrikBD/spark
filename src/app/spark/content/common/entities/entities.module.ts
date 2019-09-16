@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PartialsModule } from '../../common/partials/partials.module';
 
 import { EntitiesComponent } from './entities.component';
 
@@ -20,7 +21,8 @@ import { KanbanBoardComponent } from './components/kanban/components/kanban-boar
     KanbanBoardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    PartialsModule
   ],
   exports: [
     EntitiesComponent

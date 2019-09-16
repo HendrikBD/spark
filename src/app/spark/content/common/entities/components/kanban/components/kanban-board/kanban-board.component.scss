@@ -1,3 +1,33 @@
 .board_container {
-  .board {}
+  .board {
+    border: 1px solid black;
+    border-radius: 3px;
+    .header {
+      border-bottom: 1px solid black;
+      padding: 10px;
+      font-weight: 600;
+    }
+
+    .entities {
+      padding: 5px 10px;
+      .entity {
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .buttons {
+          display: flex;
+          .button {
+            cursor: pointer;
+            margin: 3px;
+            i {
+              font-size: 1.2rem;
+            }
+          }
+        }
+      }
+    }
+
+  }
 }

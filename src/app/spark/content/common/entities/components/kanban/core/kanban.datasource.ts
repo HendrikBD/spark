@@ -3,7 +3,7 @@ import { Apollo, Query } from 'apollo-angular';
 import { Observable, of } from 'rxjs';
 import gql from 'graphql-tag';
 
-import { SparkDataSource } from '../../partials/general/spark-datatable/core/spark.datasource';
+import { SparkDataSource } from '../../../../partials/general/spark-datatable/core/spark.datasource';
 import { KanbanSample } from './kanban.sample';
 
 @Injectable()

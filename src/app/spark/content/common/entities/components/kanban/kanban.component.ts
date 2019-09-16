@@ -11,7 +11,7 @@ export class KanbanComponent implements OnInit {
   @Input() kanbanStatic;
 
   get kanban() {
-    return this.kanbanControl ? this.kanbanControl.getRawValue() : (this.kanbanStatic || null);
+    return this.kanbanControl ? this.kanbanControl.value : (this.kanbanStatic || null);
   }
 
   constructor() { }

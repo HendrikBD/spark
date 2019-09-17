@@ -53,11 +53,7 @@ export class DraggableDirective implements AfterViewInit {
               x: this.start.x + this.delta.x,
               y: this.start.y + this.delta.y
             };
-            window.requestAnimationFrame(() => {
-              window.requestAnimationFrame(() => {
-                if (this.onDropFcn) this.onDropFcn({ position: dropPos, action: 'drop' });
-              });
-            });
+            if (this.onDropFcn) this.onDropFcn({ position: dropPos, action: 'drop' });
             this.delta = { x: 0, y: 0 };
             this.translate();
           }
@@ -96,11 +92,7 @@ export class DraggableDirective implements AfterViewInit {
 
 
   private translate() {
-    window.requestAnimationFrame(() => {
-      this.target.style.transform = `
-        translate(${this.delta.x}px, ${this.delta.y}px)
-      `;
-    });
+    this.target.style.transform = `translate(${this.delta.x}px, ${this.delta.y}px)`;
   }
 
 }

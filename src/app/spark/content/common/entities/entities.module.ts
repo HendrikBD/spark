@@ -13,10 +13,14 @@ import { EntityService } from './core/entity.service';
 import { DynamicEntityComponent } from './dynamic-entity/dynamic-entity.component';
 import { KanbanBoardComponent } from './components/kanban/components/kanban-board/kanban-board.component';
 
+// Directives
+import { EntityDraggableDirective } from './core/directives/entity-draggable.directive';
+
 @NgModule({
   declarations: [
     EntitiesComponent,
     DynamicEntityComponent,
+    EntityDraggableDirective,
     // Kanban
     KanbanComponent,
     KanbanBoardComponent

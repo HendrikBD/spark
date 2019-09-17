@@ -10,6 +10,7 @@ export class DynamicEntityComponent implements OnInit {
 
   @Input() entityStatic;
   @Input() entityControl;
+  @Input() scanRequest$;
 
   get entity(): Entity {
     return (this.entityControl) ? this.entityControl.getRawValue() : (this.entityStatic || null);

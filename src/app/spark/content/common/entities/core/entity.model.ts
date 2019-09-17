@@ -1,4 +1,4 @@
-import { Observer } from 'rxjs';
+import { Observer, Subject } from 'rxjs';
 
 import { Kanban } from '../components/kanban/core/kanban.model';
 
@@ -19,3 +19,16 @@ export class EntitySimple {
 }
 
 export type AnyEntity = Kanban | EntitySimple | Entity;
+
+export interface ScanRequest {
+  position: {
+    x: number;
+    y: number;
+  };
+  moveRequest?: MoveRequest;
+}
+
+export interface MoveRequest {
+  entity: Entity;
+  accept$: Subject<boolean>;
+}

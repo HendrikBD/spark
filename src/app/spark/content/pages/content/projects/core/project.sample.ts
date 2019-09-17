@@ -60,10 +60,10 @@ export const ProjectSample: Project = {
         ]
       },
       {
-        id: 7,
+        id: 8,
         name: 'Build',
         kind: {
-          id: 1,
+          id: 2,
           name: 'kanbanBoards'
         },
         entities: [

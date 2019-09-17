@@ -13,10 +13,12 @@ import {
 import { Observable, Subscription, Subject, fromEvent, pipe, of } from 'rxjs';
 import { map, switchMap, takeUntil, tap, catchError, finalize, takeLast } from 'rxjs/operators';
 
+import { EntityService } from '../entity.service';
+
 @Directive({
-  selector: '[spkDraggable]'
+  selector: '[spkEntityDraggable]'
 })
-export class DraggableDirective implements AfterViewInit {
+export class EntityDraggableDirective implements AfterViewInit {
   @HostBinding('style.cursor') get cursor() {
     return this.dragging ? 'grabbing' : 'grab';
   }
@@ -55,7 +57,7 @@ export class DraggableDirective implements AfterViewInit {
             };
             window.requestAnimationFrame(() => {
               window.requestAnimationFrame(() => {
-                if (this.onDropFcn) this.onDropFcn({ position: dropPos, action: 'drop' });
+                if (this.onDropFcn) this.onDropFcn(dropPos);
               });
             });
             this.delta = { x: 0, y: 0 };
@@ -87,7 +89,8 @@ export class DraggableDirective implements AfterViewInit {
 
   constructor(
     private elementRef: ElementRef,
-    private zone: NgZone
+    private zone: NgZone,
+    private entityService: EntityService
   ) {}
 
   ngAfterViewInit() {

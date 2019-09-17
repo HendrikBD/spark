@@ -1,6 +1,6 @@
 <div class="mat-elevation-z1">
 
-  <spk-dynamic-entity [entityControl]="currentEntityControl">
+  <spk-dynamic-entity [entityControl]="currentEntityControl" [scanRequest$]="scanRequest$">
   </spk-dynamic-entity>
 
     <ng-container *ngIf="previousEntity?.isVisible">

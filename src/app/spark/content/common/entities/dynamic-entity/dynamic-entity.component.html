@@ -2,7 +2,7 @@
   <ng-container [ngSwitch]="entity?.kind.name">
 
     <ng-container *ngSwitchCase="'kanban'">
-      <spk-kanban [kanbanControl]="entityControl"></spk-kanban>
+      <spk-kanban [kanbanControl]="entityControl" [scanRequest$]="scanRequest$"></spk-kanban>
     </ng-container>
 
   </ng-container>

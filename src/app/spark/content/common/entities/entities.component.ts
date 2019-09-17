@@ -1,10 +1,10 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { BehaviorSubject, Subscription, Observer, of } from 'rxjs';
+import { Subject, BehaviorSubject, Subscription, Observer, of } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 
 import { EntityControlService } from './core/entity-control.service';
 
-import { Entity } from './core/entity.model';
+import { Entity, ScanRequest, MoveRequest } from './core/entity.model';
 
 @Component({
   selector: 'spk-entities',
@@ -18,11 +18,8 @@ export class EntitiesComponent implements OnInit, OnChanges {
   currentEntityControl: FormGroup;
   currentEntity: Entity;
   previousEntity: Entity;
-  // entityObserver: Observer<Entity> = {
-  //   next: this.onEntityUpdate.bind(this),
-  //   error: console.error,
-  //   complete: () => {}
-  // };
+
+  scanRequest$: Subject<ScanRequest> = new Subject();
 
   entityUpdate: BehaviorSubject<{ isChild: boolean; entity: Entity }> = new BehaviorSubject(null);
 

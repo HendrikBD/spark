@@ -9,13 +9,7 @@
 
   <div class="boards_container">
     <div class="board" *ngFor="let boardControl of kanbanControl?.get('boards').controls">
-      <spk-kanban-board [boardControl]="boardControl"></spk-kanban-board>
-    </div>
-    <div class="board" *ngFor="let boardControl of kanbanControl?.get('boards').controls">
-      <spk-kanban-board [boardControl]="boardControl"></spk-kanban-board>
-    </div>
-    <div class="board" *ngFor="let boardControl of kanbanControl?.get('boards').controls">
-      <spk-kanban-board [boardControl]="boardControl"></spk-kanban-board>
+      <spk-kanban-board [boardControl]="boardControl" [scanRequest$]="scanRequest$"></spk-kanban-board>
     </div>
   </div>
 

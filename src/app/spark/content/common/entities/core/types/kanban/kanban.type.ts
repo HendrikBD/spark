@@ -1,4 +1,4 @@
-import { Entity } from '../../../core/entity.model';
+import { Entity } from '../entity.type';
 
 export class Kanban extends Entity {
   boards: KanbanBoard[];

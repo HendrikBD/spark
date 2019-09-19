@@ -13,10 +13,10 @@ import {
 } from '@angular/core';
 import { Subject, Subscription, of } from 'rxjs';
 
-import { EntityService } from '../../../../core/entity.service';
-import { EntityControlService } from '../../../../core/entity-control.service';
+import { EntityService } from '../../../../core/services/entity.service';
+import { EntityControlService } from '../../../../core/services/entity-control.service';
 
-import { Entity, ScanRequest } from '../../../../core/entity.model';
+import { Entity, ScanRequest } from '../../../../core/types/entity.type';
 
 @Component({
   selector: 'spk-kanban-board',

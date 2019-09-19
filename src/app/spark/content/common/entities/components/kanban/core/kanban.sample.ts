@@ -1,4 +1,4 @@
-import { Kanban } from './kanban.model';
+import { Kanban } from '../../../core/types/kanban/kanban.type';
 
 export const KanbanSample: Kanban = {
   id: 1,

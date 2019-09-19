@@ -1,5 +1,5 @@
-import { Entity } from './entity.model';
-import { Kanban } from '../components/kanban/core/kanban.model';
+import { Entity } from '../types/entity.type';
+import { Kanban } from '../types/kanban/kanban.type';
 
 export const entitySample: Entity = {
   id: 2,

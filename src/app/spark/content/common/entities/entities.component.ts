@@ -2,9 +2,9 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Subject, BehaviorSubject, Subscription, Observer, of } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 
-import { EntityControlService } from './core/entity-control.service';
+import { EntityControlService } from './core/services/entity-control.service';
 
-import { Entity, ScanRequest, MoveRequest } from './core/entity.model';
+import { Entity, ScanRequest, MoveRequest } from './core/types/entity.type';
 
 @Component({
   selector: 'spk-entities',

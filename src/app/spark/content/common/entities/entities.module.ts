@@ -8,8 +8,8 @@ import { EntitiesComponent } from './entities.component';
 import { KanbanComponent } from './components/kanban/kanban.component';
 
 // Services
-import { EntityControlService } from './core/entity-control.service';
-import { EntityService } from './core/entity.service';
+import { EntityControlService } from './core/services/entity-control.service';
+import { EntityService } from './core/services/entity.service';
 import { DynamicEntityComponent } from './dynamic-entity/dynamic-entity.component';
 import { KanbanBoardComponent } from './components/kanban/components/kanban-board/kanban-board.component';
 

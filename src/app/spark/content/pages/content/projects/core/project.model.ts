@@ -1,4 +1,4 @@
-import { AnyEntity } from '../../../../common/entities/core/entity.model';
+import { AnyEntity } from '../../../../common/entities/core/types/entity.type';
 
 export interface Project {
   id: number;

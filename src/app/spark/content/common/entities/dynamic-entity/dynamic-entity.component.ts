@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Entity } from '../core/entity.model';
+import { Entity } from '../core/types/entity.type';
 
 @Component({
   selector: 'spk-dynamic-entity',

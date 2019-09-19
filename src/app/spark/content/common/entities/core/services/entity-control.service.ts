@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { Entity } from './entity.model';
-import { Kanban, KanbanBoard } from '../components/kanban/core/kanban.model';
+import { Entity } from '../types/entity.type';
+import { Kanban, KanbanBoard } from '../types/kanban/kanban.type';
 
 @Injectable()
 export class EntityControlService {

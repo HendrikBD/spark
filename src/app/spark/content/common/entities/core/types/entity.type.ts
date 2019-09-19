@@ -1,6 +1,6 @@
 import { Observer, Subject } from 'rxjs';
 
-import { Kanban } from '../components/kanban/core/kanban.model';
+import { Kanban } from './kanban/kanban.type';
 
 export class Entity {
   id: number;

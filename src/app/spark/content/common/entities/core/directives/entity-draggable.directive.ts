@@ -13,7 +13,7 @@ import {
 import { Observable, Subscription, Subject, fromEvent, pipe, of } from 'rxjs';
 import { map, switchMap, takeUntil, tap, catchError, finalize, takeLast } from 'rxjs/operators';
 
-import { EntityService } from '../entity.service';
+import { EntityService } from '../services/entity.service';
 
 @Directive({
   selector: '[spkEntityDraggable]'

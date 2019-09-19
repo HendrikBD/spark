@@ -19,11 +19,14 @@ const errorService = new ErrorService();
 Container.set('ErrorHandler', errorService);
 Container.set('AuthService', new AuthService(errorService));
 
+// Setting up app and putting in container
 const app = express();
 Container.set('app', app);
 
+// Bootstrap
 async function bootstrap() {
   const gqlPath = '/graphql';
+  // Building schema off of the type-graphql stuff
   const schema = await buildSchema({
     resolvers: [Resolvers as any],
     emitSchemaFile: path.resolve(__dirname, 'schema.gql'),
@@ -31,6 +34,8 @@ async function bootstrap() {
     authChecker: authCheck,
     container: Container,
   });
+
+  // Starting an apollo server
   const server = new ApolloServer({
     schema,
     context: ({ req }) => {
@@ -43,7 +48,10 @@ async function bootstrap() {
     playground: process.env.GQL_PLAYGROUND === 'true',
   });
 
+  // Adding useful middlewares
   app.use('/', bodyParser.json());
+
+  // Setting up auth routes outside of gql
   app.post(
     '/login',
     (Container.get('AuthService') as AuthService).login.bind(Container.get('AuthService'))
@@ -53,11 +61,13 @@ async function bootstrap() {
     (Container.get('AuthService') as AuthService).createAccount.bind(Container.get('AuthService'))
   );
 
+  // Setting up playground with access token to allow access
   app.use('/graphql', (req, res, next) => {
     req.headers.authorization = process.env.PLAYGROUND_AUTH;
     next();
   });
 
+  // Setting up jwt check for every route except auth routes
   app.use(
     '*',
     jwt({
@@ -68,13 +78,16 @@ async function bootstrap() {
     })
   );
 
+  // Test route
   app.get('/test', (req, res) => {
     console.log('test');
     res.json({ test: true });
   });
 
+  // Applyies gql server as middleware(?) to app
   server.applyMiddleware({ app, path: gqlPath });
 
+  // Beginning app as server
   app.listen({ port: 4000 }, () => {
     console.log(`Server is running, available at port: 4000`);
   });

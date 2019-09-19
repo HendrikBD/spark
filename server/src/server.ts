@@ -29,26 +29,32 @@ async function bootstrap() {
     emitSchemaFile: path.resolve(__dirname, 'schema.gql'),
     validate: false,
     authChecker: authCheck,
-    container: Container
+    container: Container,
   });
   const server = new ApolloServer({
     schema,
     context: ({ req }) => {
       const context = {
         req,
-        user: (req as any).user.user
+        user: (req as any).user.user,
       };
       return context;
     },
-    playground: process.env.GQL_PLAYGROUND === 'true'
+    playground: process.env.GQL_PLAYGROUND === 'true',
   });
 
   app.use('/', bodyParser.json());
-  app.post('/login', (Container.get('AuthService') as AuthService).login.bind(Container.get('AuthService')));
-  app.post('/create-account', (Container.get('AuthService') as AuthService).createAccount.bind(Container.get('AuthService')));
+  app.post(
+    '/login',
+    (Container.get('AuthService') as AuthService).login.bind(Container.get('AuthService'))
+  );
+  app.post(
+    '/create-account',
+    (Container.get('AuthService') as AuthService).createAccount.bind(Container.get('AuthService'))
+  );
 
   app.use('/graphql', (req, res, next) => {
-    req.headers.authorization = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNTU5NDI1NTc0fQ.nmcS7JaJn_CuNe6t7VFydrril0R1vxnqUVzn-h18_Ck';
+    req.headers.authorization = process.env.PLAYGROUND_AUTH;
     next();
   });
 
@@ -56,18 +62,15 @@ async function bootstrap() {
     '*',
     jwt({
       secret: process.env.JWT_KEY,
-      credentialsRequired: true
+      credentialsRequired: true,
     }).unless({
-      path: [
-        '/create-account',
-        '/login'
-      ]
+      path: ['/create-account', '/login'],
     })
   );
 
   app.get('/test', (req, res) => {
     console.log('test');
-    res.json({test: true});
+    res.json({ test: true });
   });
 
   server.applyMiddleware({ app, path: gqlPath });
@@ -75,7 +78,6 @@ async function bootstrap() {
   app.listen({ port: 4000 }, () => {
     console.log(`Server is running, available at port: 4000`);
   });
-
 }
 
 bootstrap().catch(console.log);

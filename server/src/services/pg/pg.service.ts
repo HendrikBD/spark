@@ -8,8 +8,9 @@ export default class PgService {
 
   error: ErrorService;
   knex: Knex;
+  table: string;
 
-  constructor() {
+  constructor(table) {
     this.error = Container.get('ErrorHandler');
     this.knex = require('knex')({
       client: 'pg',
@@ -20,11 +21,18 @@ export default class PgService {
         database : process.env.PG_DATABASE
       }
     });
+    this.table = table;
   }
 
   mutateQuery(query, queryMutator: QueryMutator) {
+    console.log('this.table');
+    console.log(this.table);
     console.log('mutating query');
+    if (!queryMutator.pagination) queryMutator.pagination = { page: 1, pageSize: 50 };
+    if (!queryMutator.order) queryMutator.order = { column: `${this.table}.id`, dir: 'asc' };
     if (!queryMutator.filters) queryMutator.filters = [];
+    console.log('queryMutator');
+    console.log(queryMutator);
     return query.where(this.whereBuilder(queryMutator));
   }
 

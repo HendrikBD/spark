@@ -1,30 +1,30 @@
-import { Kanban } from '../../types/kanban/kanban.type';
+import { Kanban } from '../../types/common/kanban/kanban.type';
 
 export default function createSampleKanbanBoards(): Kanban[] {
   return [
     {
       id: 1,
-      label: 'Kaban',
+      name: 'Kaban',
       boards: [
         {
           id: 1,
-          label: 'ToDo',
+          name: 'ToDo',
           description: '',
           cards: [
             {
               id: 1,
               description: 'Desc 1',
-              label: 'Do a thing'
+              name: 'Do a thing'
             },
             {
               id: 2,
               description: 'Desc 2',
-              label: 'Recipe 2'
+              name: 'Recipe 2'
             },
             {
               id: 3,
               description: 'Desc 3',
-              label: 'Recipe 3'
+              name: 'Recipe 3'
             }
           ]
         }

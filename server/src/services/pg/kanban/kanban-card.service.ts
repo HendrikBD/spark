@@ -2,20 +2,20 @@ import { Service, Inject } from 'typedi';
 import PgService from '../pg.service';
 
 import { QueryMutator } from '../../../schema/types/common/query-mutator.type';
-import { KanbanCard, KanbanCardInputBody } from '../../../schema/types/kanban/kanban-card.type';
+import { KanbanCard, KanbanCardInputBody } from '../../../schema/types/common/kanban/kanban-card.type';
 
 @Service()
 export default class KanbanCardService extends PgService {
 
   constructor(container) {
-    super();
+    super('kanban_cards');
   }
 
   getAll(): Promise<KanbanCard[]> {
     return new Promise((resolve, reject) => {
       this.knex.select({
         'id': 'kanban_cards.id',
-        'label': 'kanban_cards.label',
+        'name': 'kanban_cards.name',
         'description': 'kanban_cards.description'
       }).from('kanban_cards')
         .then(resolve);
@@ -38,7 +38,7 @@ export default class KanbanCardService extends PgService {
       const query = this.knex('kanban_cards')
         .select({
           'id': 'kanban_cards.id',
-          'label': 'kanban_cards.label',
+          'name': 'kanban_cards.name',
           'description': 'kanban_cards.description'
         });
 
@@ -55,7 +55,7 @@ export default class KanbanCardService extends PgService {
       let kanbanCard: KanbanCard;
 
       this.knex.insert({
-        label: newKanbanCard.label,
+        name: newKanbanCard.name,
         description: newKanbanCard.description,
         board_id: newKanbanCard.parentBoardId
       }).into('kanban_cards').returning('*').then(res => {

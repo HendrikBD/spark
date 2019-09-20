@@ -1,14 +1,14 @@
 import { Service, Inject } from 'typedi';
 import PgService from '../pg.service';
 
-import { Kanban, KanbanInputBody } from '../../../schema/types/kanban/kanban.type';
+import { Kanban, KanbanInputBody } from '../../../schema/types/common/kanban/kanban.type';
 import { QueryMutator } from '../../../schema/types/common/query-mutator.type';
 
 @Service()
 export default class KanbanService extends PgService {
 
   constructor(container) {
-    super();
+    super('kanbans');
   }
 
   getAll(queryMutator: QueryMutator): Promise<Kanban[]> {
@@ -16,7 +16,7 @@ export default class KanbanService extends PgService {
     const query = this.knex('kanbans')
       .select({
         'id': 'kanbans.id',
-        'label': 'kanbans.label',
+        'name': 'kanbans.name',
         'boards': 'kanbans_view.boards'
       })
       .innerJoin('kanbans_view', 'kanbans_view.id', 'kanbans.id')
@@ -43,7 +43,7 @@ export default class KanbanService extends PgService {
       const query = this.knex('kanbans')
         .select({
           'id': 'kanbans.id',
-          'label': 'kanbans.label',
+          'name': 'kanbans.name',
           'boards': 'kanbans_view.boards',
           'authorizedUsers': 'kanbans_authorized_users_view.authorized_users'
         })
@@ -66,7 +66,7 @@ export default class KanbanService extends PgService {
     return new Promise((resolve, reject) => {
       let kanban: Kanban;
 
-      this.knex.insert({label: newKanban.label}).into('kanbans').returning('*').then(res => {
+      this.knex.insert({name: newKanban.name}).into('kanbans').returning('*').then(res => {
         kanban = res[0];
 
         return Promise.all([

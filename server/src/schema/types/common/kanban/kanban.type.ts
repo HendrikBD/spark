@@ -11,7 +11,7 @@ export class Kanban {
   id: number;
 
   @Field()
-  label: string;
+  name: string;
 
   @Field(type => [KanbanBoard])
   boards: KanbanBoard[];
@@ -25,7 +25,7 @@ export class KanbanInputBody {
 
   @Field()
   @MaxLength(30)
-  label: string;
+  name: string;
 
   @Field({ nullable: true })
   parentCardId?: number;

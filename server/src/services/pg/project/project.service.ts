@@ -8,7 +8,7 @@ import { QueryMutator } from '../../../schema/types/common/query-mutator.type';
 export default class ProjectService extends PgService {
 
   constructor(container) {
-    super();
+    super('projects');
   }
 
   getAll(queryMutator: QueryMutator = {}): Promise<Project[]> {

@@ -3,7 +3,7 @@ import { Service, Inject } from 'typedi';
 import PgService from '../pg.service';
 import KanbanService from './kanban.service';
 
-import { KanbanBoard, KanbanBoardInputBody } from '../../../schema/types/kanban/kanban-board.type';
+import { KanbanBoard, KanbanBoardInputBody } from '../../../schema/types/common/kanban/kanban-board.type';
 import { QueryMutator } from '../../../schema/types/common/query-mutator.type';
 
 @Service()
@@ -13,14 +13,14 @@ export default class KanbanBoardService extends PgService {
     container,
     private readonly kanbanService: KanbanService
   ) {
-    super();
+    super('kanban_boards');
   }
 
   getAll(): Promise<KanbanBoard[]> {
     return new Promise((resolve, reject) => {
       this.knex.select({
         'id': 'kanban_boards_view.id',
-        'label': 'kanban_boards_view.label',
+        'name': 'kanban_boards_view.name',
         'description': 'kanban_boards_view.description',
         'cards': 'kanban_boards_view.cards'
       }).from('kanban_boards_view')
@@ -44,7 +44,7 @@ export default class KanbanBoardService extends PgService {
       const query = this.knex('kanban_boards')
         .select({
           'id': 'kanban_boards.id',
-          'label': 'kanban_boards_view.label',
+          'name': 'kanban_boards_view.name',
           'description': 'kanban_boards_view.description',
           'cards': 'kanban_boards_view.cards'
         })
@@ -63,7 +63,7 @@ export default class KanbanBoardService extends PgService {
       let kanbanBoard: KanbanBoard;
 
       this.knex.insert({
-        label: newKanbanBoard.label,
+        name: newKanbanBoard.name,
         description: newKanbanBoard.description,
         kanban_id: newKanbanBoard.parentKanbanId
       }).into('kanban_boards').returning('*').then(res => {

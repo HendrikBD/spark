@@ -10,7 +10,7 @@ export class KanbanBoard {
   id: number;
 
   @Field()
-  label: string;
+  name: string;
 
   @Field({ nullable: true })
   description?: string;
@@ -28,7 +28,7 @@ export class KanbanBoardInputBody {
 
   @Field()
   @MaxLength(30)
-  label: string;
+  name: string;
 
   @Field({ nullable: true })
   @MaxLength(255)

@@ -3,22 +3,40 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Entity {
+  id: Float!
+  name: String!
+  type: String!
+}
+
+input EntityInput {
+  id: Float!
+  name: String!
+  type: String!
+}
+
+input EntityUpdate {
+  id: Float!
+  name: String!
+  type: String!
+}
+
 type Kanban {
   id: Float!
-  label: String!
+  name: String!
   boards: [KanbanBoard!]!
 }
 
 type KanbanBoard {
   id: Float!
-  label: String!
+  name: String!
   description: String
   cards: [KanbanCard!]!
 }
 
 input KanbanBoardInputBody {
   parentKanbanId: Float!
-  label: String!
+  name: String!
   description: String
 }
 
@@ -30,13 +48,13 @@ type KanbanBoardResponse {
 
 type KanbanCard {
   id: Float!
-  label: String!
+  name: String!
   description: String
   kanban: Kanban
 }
 
 input KanbanCardInputBody {
-  label: String!
+  name: String!
   description: String
   parentBoardId: Float!
 }
@@ -49,7 +67,7 @@ type KanbanCardResponse {
 
 """New kanban data"""
 input KanbanInputBody {
-  label: String!
+  name: String!
   parentCardId: Float
 }
 
@@ -64,6 +82,7 @@ type Mutation {
   addKanbanBoard(kanbanBoardInputBody: KanbanBoardInputBody!): KanbanBoard!
   addKanbanCard(kanbanCardInputBody: KanbanCardInputBody!): KanbanCard!
   addProject(projectInputBody: ProjectInputBody!): Project!
+  updateEntity(entityUpdate: EntityUpdate!): Boolean!
 }
 
 type Project {
@@ -89,4 +108,9 @@ type Query {
   kanbanBoards(first: Int = 10): KanbanBoardResponse!
   kanbanCards(first: Int = 10): KanbanCardResponse!
   projects(first: Int = 10): ProjectResponse!
+  getEntities: [Entity!]!
+}
+
+type Subscription {
+  subscribeToEntities: Entity!
 }

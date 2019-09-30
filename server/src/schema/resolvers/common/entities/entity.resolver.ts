@@ -29,7 +29,7 @@ export default class EntityResolver {
   @Query(returns => [Entity])
   getEntities() {
     console.log('getting entities');
-    return [{ id: 1, name: 'name' }];
+    return [{ id: 1, name: 'name', type: 'type' }];
   }
 
   @Mutation(returns => Boolean, { name: 'updateEntity' })

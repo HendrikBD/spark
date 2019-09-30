@@ -29,10 +29,15 @@ import { SparkGuard } from './spark/spark.guard';
     BrowserModule,
     AppRoutingModule,
     GraphQLModule,
+    ApolloModule,
+    HttpLinkModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule
+  ],
+  exports: [
+    ApolloModule
   ],
   providers: [
     AuthService,

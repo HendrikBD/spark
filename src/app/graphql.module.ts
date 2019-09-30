@@ -1,26 +1,21 @@
-import {NgModule} from '@angular/core';
-import {ApolloModule, APOLLO_OPTIONS} from 'apollo-angular';
-import {HttpLinkModule, HttpLink} from 'apollo-angular-link-http';
-import {InMemoryCache} from 'apollo-cache-inmemory';
+import { NgModule } from '@angular/core';
+import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { SubscriptionClient } from 'subscriptions-transport-ws';
+import { WebSocketLink } from 'apollo-link-ws';
+import gql from 'graphql-tag';
 
 import { HttpLink as myHttpLink } from 'apollo-link-http';
 
-const uri = 'http://localhost:8000/graphql/'; // <-- add the URL of the GraphQL server here
-const LINK: myHttpLink = new myHttpLink({
-  uri: 'http://localhost:4000/graphql',
-  headers: {
-    'Access-Control-Allow-Origin': 'http://localhost:4200',
-    'Access-Control-Allow-Methods': 'GET',
-    'Access-Control-Allow-Headers': 'application/json'
-    // "Access-Control-Allow-Credentials" : true
-    // "X-CSRFToken": Cookies.get('csrftoken')
-    },
-  useGETForQueries: true
-});
-
 export function createApollo(httpLink: myHttpLink) {
+  console.log('Creating apollo server');
+
+  const client = new SubscriptionClient('ws:localhost:4000/graphql', { reconnect: true });
+  const link = new WebSocketLink(client);
+
   return {
-    link: LINK,
+    link,
     cache: new InMemoryCache(),
   };
 }
@@ -31,9 +26,8 @@ export function createApollo(httpLink: myHttpLink) {
     {
       provide: APOLLO_OPTIONS,
       useFactory: createApollo,
-      deps: [HttpLink]
+      deps: [HttpLink],
     },
   ],
 })
-
 export class GraphQLModule {}

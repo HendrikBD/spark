@@ -28,6 +28,7 @@
     "apollo-cache-inmemory": "^1.6.1",
     "apollo-client": "^2.6.1",
     "apollo-link-http": "^1.5.14",
+    "apollo-link-ws": "^1.0.19",
     "core-js": "^2.5.4",
     "graphql": "^14.3.1",
     "graphql-redis-subscriptions": "^2.1.1",

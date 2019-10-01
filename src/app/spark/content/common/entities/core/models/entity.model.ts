@@ -1,8 +1,9 @@
+import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 
-import { Entity } from '../types/entity.type';
-import { EntityDataSource } from '../datasource/entity.datasource';
+import { Entity, AnyEntity } from '../types/entity.type';
+import { EntityDataSource } from '../datasources/entity.datasource';
 import { KanbanModel } from './kanban/kanban.model';
 import { QueryMutator } from '../../../../../core/types/common/query-mutator.type';
 
@@ -20,10 +21,13 @@ import { QueryMutator } from '../../../../../core/types/common/query-mutator.typ
 //  - may be usefull for specific things
 
 
+@Injectable()
 export class EntityModel {
 
   dataSource;
-  constructor() {
+  constructor(
+    private kanbanModel: KanbanModel
+  ) {
     this.dataSource = new EntityDataSource();
   }
 
@@ -44,6 +48,25 @@ export class EntityModel {
     };
 
     return this.dataSource.watchQuery(queryMutator);
+  }
+
+  // A general purpose function to get an entity subscription tailored for that type of entity
+  getEntitySubscriptionById(entity: Entity): BehaviorSubject<AnyEntity> {
+    switch (entity.kind.name) {
+      case 'kanban':
+        return this.kanbanModel.subscribeById(entity.id);
+        break;
+      default:
+        return new BehaviorSubject(null);
+    }
+    console.log(entity);
+  }
+
+  subscribeById(id: number): BehaviorSubject<Entity> {
+    return new BehaviorSubject(null);
+  }
+
+  subscribeToSet(queryMutator) {
   }
 
 }

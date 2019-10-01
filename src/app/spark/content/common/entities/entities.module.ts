@@ -13,6 +13,10 @@ import { EntityService } from './core/services/entity.service';
 import { DynamicEntityComponent } from './dynamic-entity/dynamic-entity.component';
 import { KanbanBoardComponent } from './components/kanban/components/kanban-board/kanban-board.component';
 
+// Models
+import { EntityModel } from './core/models/entity.model';
+import { KanbanModel } from './core/models/kanban/kanban.model';
+
 // Directives
 import { EntityDraggableDirective } from './core/directives/entity-draggable.directive';
 
@@ -34,7 +38,10 @@ import { EntityDraggableDirective } from './core/directives/entity-draggable.dir
   ],
   providers: [
     EntityControlService,
-    EntityService
+    EntityService,
+    // Models
+    EntityModel,
+    KanbanModel
   ]
 })
 export class EntitiesModule { }

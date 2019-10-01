@@ -21,9 +21,7 @@ export class AppComponent implements OnInit {
   kanbanCardsQuery: Observable<KanbanCard[]>;
   kanbanCards: BehaviorSubject<KanbanCard[]> = new BehaviorSubject([]);
 
-  ngOnInit() {
-    this.testApollo();
-  }
+  ngOnInit() {}
 
   testApollo() {
     this.apollo

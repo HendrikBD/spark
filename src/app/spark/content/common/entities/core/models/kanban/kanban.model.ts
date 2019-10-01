@@ -1,12 +1,18 @@
-import { EntityModel } from '../entity.model';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
-export class KanbanModel extends EntityModel {
+import { Kanban } from '../../types/kanban/kanban.type';
+
+@Injectable()
+export class KanbanModel {
 
   dataSource;
   form;
 
-  constructor() {
-    super();
+  constructor() {}
+
+  subscribeById(id): BehaviorSubject<Kanban> {
+    return new BehaviorSubject(null);
   }
 
 }

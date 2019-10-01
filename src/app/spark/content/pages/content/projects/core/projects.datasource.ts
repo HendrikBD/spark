@@ -14,38 +14,38 @@ export class ProjectsDataSource extends SparkDataSource {
   dataKey: 'projects';
 
   constructor(
-    private apollo: Apollo
+    // private apollo: Apollo
   ) { super(); }
 
-  getData(queryMutator): Observable<any> {
-    return this.apollo.watchQuery<any>({
-      query: gql`
-        query getProjects {
-          projects {
-            data {
-              id,
-              name
-            }
-          }
-        }
-      `
-    }).valueChanges;
-  }
-
-  testPagination() {
-    console.log('testPagination');
-    const query = gql`
-      query getProjects($id: integer) {
-        project(id: $id) {
-          data {
-            id,
-            name
-          }
-        }
-      }
-    `;
-
-  }
+  // getData(queryMutator): Observable<any> {
+  //   return this.apollo.watchQuery<any>({
+  //     query: gql`
+  //       query getProjects {
+  //         projects {
+  //           data {
+  //             id,
+  //             name
+  //           }
+  //         }
+  //       }
+  //     `
+  //   }).valueChanges;
+  // }
+  //
+  // testPagination() {
+  //   console.log('testPagination');
+  //   const query = gql`
+  //     query getProjects($id: integer) {
+  //       project(id: $id) {
+  //         data {
+  //           id,
+  //           name
+  //         }
+  //       }
+  //     }
+  //   `;
+  //
+  // }
 
   getTestProject(): Observable<Project> {
     return of(ProjectSample);

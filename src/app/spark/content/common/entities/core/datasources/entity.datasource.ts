@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Apollo, Query } from 'apollo-angular';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import gql from 'graphql-tag';
+import { SubscriptionClient } from 'subscriptions-transport-ws';
 
 // import { SparkDataSource } from '../../partials/general/spark-datatable/core/spark.datasource';
 import { entitySample } from '../samples/entity.sample';
@@ -15,39 +16,8 @@ export class EntityDataSource {
 
   dataKey: 'entities';
 
-  constructor() {
-    // this.apollo = new Apollo(1);
-  }
+  constructor() {}
 
-  // getData(queryMutator): Observable<any> {
-  //   return this.apollo.watchQuery<any>({
-  //     query: gql`
-  //       query getEntities {
-  //         entities {
-  //           data {
-  //             id,
-  //             name
-  //           }
-  //         }
-  //       }
-  //     `
-  //   }).valueChanges;
-  // }
-
-  // testPagination() {
-  //   console.log('testPagination');
-  //   const query = gql`
-  //     query getEntities($id: integer) {
-  //       entity(id: $id) {
-  //         data {
-  //           id,
-  //           name
-  //         }
-  //       }
-  //     }
-  //   `;
-  //
-  // }
 
   getTestEntity(): Observable<Entity> {
     return of(entitySample);
@@ -60,6 +30,13 @@ export class EntityDataSource {
   //
   watchQuery(queryMutator: QueryMutator): BehaviorSubject<Entity[] | Entity> {
     return new BehaviorSubject(null);
+  }
+
+  subscribeById(id) {
+    console.log(id);
+  }
+
+  subscribeToSet(queryMutator) {
   }
 
 }

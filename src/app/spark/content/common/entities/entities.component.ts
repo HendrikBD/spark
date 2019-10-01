@@ -3,8 +3,9 @@ import { Subject, BehaviorSubject, Subscription, Observer, of } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 
 import { EntityControlService } from './core/services/entity-control.service';
+import { EntityModel } from './core/models/entity.model';
 
-import { Entity, ScanRequest, MoveRequest } from './core/types/entity.type';
+import { Entity, AnyEntity, ScanRequest, MoveRequest } from './core/types/entity.type';
 
 @Component({
   selector: 'spk-entities',
@@ -14,6 +15,10 @@ import { Entity, ScanRequest, MoveRequest } from './core/types/entity.type';
 export class EntitiesComponent implements OnInit, OnChanges {
 
   @Input() rootEntity: Entity;
+
+  rootEntity$: BehaviorSubject<AnyEntity>;
+
+  entity$: BehaviorSubject<Entity>;
 
   currentEntityControl: FormGroup;
   currentEntity: Entity;
@@ -28,7 +33,8 @@ export class EntitiesComponent implements OnInit, OnChanges {
   } = {};
 
   constructor(
-    private controlService: EntityControlService
+    private controlService: EntityControlService,
+    private entityModel: EntityModel
   ) { }
 
   ngOnInit() {
@@ -38,6 +44,16 @@ export class EntitiesComponent implements OnInit, OnChanges {
     if (!this.currentEntityControl && this.rootEntity) {
       this.currentEntityControl = this.controlService.buildEntityControl(this.rootEntity);
     }
+    if (this.rootEntity && !this.rootEntity$) {
+      this.subscribeToRootEntity();
+    }
+  }
+
+  subscribeToRootEntity() {
+    console.log('sub');
+    console.log(this.rootEntity);
+    this.rootEntity$ = this.entityModel.getEntitySubscriptionById(this.rootEntity);
+    console.log(this.rootEntity$);
   }
 
   /**

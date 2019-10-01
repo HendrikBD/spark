@@ -23,7 +23,6 @@ export class ProjectDashboardComponent implements OnInit {
     const projectId = parseInt(this.route.snapshot.paramMap.get('projectId'), 10);
     const sub = this.dataSource.getTestProject().subscribe(res => {
       this.project = res;
-      console.log(res);
     });
   }
 

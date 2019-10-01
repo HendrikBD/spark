@@ -32,10 +32,6 @@ export class EntitiesComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    // of({{ id: 1, name: 'a', kind: '' }}).subscribe(this.entityObserver);
-    // this.subscriptions = {
-    //   entityUpdate: this.entityUpdate.subscribe(this.onEntityUpdate.bind(this))
-    // }
   }
 
   ngOnChanges() {

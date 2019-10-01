@@ -17,9 +17,6 @@ export class KanbanComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log('this.kanbanControl');
-    console.log(this.kanbanControl);
-  }
+  ngOnInit() {}
 
 }

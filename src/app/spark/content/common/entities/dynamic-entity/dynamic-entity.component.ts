@@ -18,9 +18,6 @@ export class DynamicEntityComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.entityControl);
-    console.log(this.entityStatic);
-  }
+  ngOnInit() {}
 
 }
